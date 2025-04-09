@@ -50,46 +50,58 @@ function site(url) {
   },250);
 }
 
-function createSearch() {
-  const d = document.createElement('div');
-  d.setAttribute('class','search');
-  d.id = 'searchDiv';
-  document.body.appendChild(d);
+function startEditor() {
+  alert("tis feature is now available sory for inconveniance");
+}
+
+function createTopButtons() {
+  const container = document.createElement('div');
+  container.classList.add("topButtons");
   
-  const i = document.createElement('img');
-  i.setAttribute('src','../img/search.png');
-  i.setAttribute('onclick','search("page2");');
-  d.appendChild(i);
+  const searchDiv = document.createElement('div');
+  searchDiv.classList.add("search");
+  searchDiv.id = 'searchDiv';
   
-  const t = document.createElement('input');
-  t.setAttribute('type','text');
-  t.setAttribute('placeholder','search for something');
-  t.id = 'searchBox';
-  t.onkeypress = function(event) {
+  const searchImg = document.createElement('img');
+  searchImg.setAttribute('src', '../img/search.png');
+  searchImg.setAttribute('onclick', 'search("page2");');
+  
+  const searchInp = document.createElement('input');
+  searchInp.setAttribute('type', 'text');
+  searchInp.setAttribute('placeholder', 'search for something');
+  searchInp.id = 'searchBox';
+  searchInp.addEventListener("keypress", (event) => {
     if (event.key === 'Enter') {
       search("page2");
     }
-  };
-  d.appendChild(t);
+  });
   
+  searchDiv.appendChild(searchImg);
+  searchDiv.appendChild(searchInp);
+  container.appendChild(searchDiv);
+  
+  // Create the edit button on the unofficial article page
   if (window.location.href.includes("article.html?article=")) {
-    const d = document.createElement("div");
-    d.className = "editButton";
-    d.id = "editButton";
-    document.body.appendChild(d);
+    const editDiv = document.createElement("div");
+    editDiv.classList.add("editButton");
+    editDiv.id = "editButton";
+    editDiv.addEventListener("click", startEditor);
     
-    const p = document.createElement("p");
-    p.innerText = "edit";
-    d.appendChild(p);
+    const editLabel = document.createElement("p");
+    editLabel.innerText = "edit";
+    editDiv.appendChild(editLabel);
     
-    const i = document.createElement('img');
-    i.setAttribute('src','../img/edit.png');
-    i.onclick = function() {alert("tis feature isn't available yet sory for inconveniance")};
-    d.appendChild(i);
+    const editImg = document.createElement('img');
+    editImg.setAttribute('src', '../img/edit.png');
+    editDiv.appendChild(editImg);
+
+    container.appendChild(editDiv);
   }
+
+  document.body.appendChild(container);
 }
 
-createSearch();
+createTopButtons();
 
 function search() {
   url = "../search.html?search=" + document.getElementById('searchBox').value;
@@ -106,18 +118,3 @@ function search2(key) {
     search("page2");
   }
 }
-
-async function adjustSize() {
-  if (document.getElementById("articleTitle") && document.getElementById("articleText")) {
-    const height = document.getElementById("articleTitle").offsetHeight;
-    const element = document.getElementById("articleText");
-    element.style.marginTop = `calc(-70vh + ${height}px)`;
-  } else if (document.getElementsByClassName("articleTitle")[0] && document.getElementsByClassName("articleText")[0]) {
-    const height = document.getElementsByClassName("articleTitle")[0].offsetHeight;
-    const element = document.getElementsByClassName("articleText")[0];
-    element.style.marginTop = `calc(-70vh + ${height}px)`;
-  }
-}
-
-window.onresize = adjustSize;
-adjustSize();

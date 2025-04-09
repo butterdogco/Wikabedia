@@ -16,37 +16,30 @@
     <div class="headImageGradient" id="headImageGradient">
       <div class="headImage" id="headImage"></div>
     </div>
-    <img src="img/wikabedia.png" class="logo" onclick="load('hey','don clik dat','img/wikabedia.png','#','items')" id="logo">
-    <img src="img/back.png" class="logo2" onclick="site('#')">
+    <div class="logo">
+      <img src="img/wikabedia.png">
+    </div>
     <h1 class="logoText" id="logoText">welcom to wikabedia</h1>
     <p class="logoDesc">te worlds source of infomation</p>
-    <div class="search">
-      <img src="img/search.png" onclick="search()">
-      <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
+    <div class="topButtons">
+      <div class="search">
+        <img src="img/search.png" onclick="search()">
+        <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
+      </div>
+      <div class="create" onclick="site('creator.html')">
+        <img src="img/create.png">
+        <p>create article</p>
+      </div>
     </div>
     <br>
     <hr>
     <h2 class="all" onclick="load('no don click me','why did you click that','img/wikabedia.png','#','items');">lates article</h2>
-    <div class="items" id="items">
-
-      <!--
-      <div class="item" id="item" onclick="site('https://google.com')">
-        <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
-        <h3>Name</h3>
-        <p>Short description</p>
-      </div>
-      -->
-      
-    </div>
+    <div class="items" id="items"></div>
     <h2 class="toparticle" onclick="load('yor mom','haha','img/creating-a-piep-bom.jpg','#','top')">top articals of panet earht</h2>
-    <div class="items" id="top">
-      
-    </div>
+    <div class="items" id="top"></div>
     
     <h2 class="recomend" onclick="load('yuo smel','imagien','img/creating-a-piep-bom.jpg','#','recomend')">recomend article</h2>
-    <div class="items" id="recomend">
-      
-    </div>
+    <div class="items" id="recomend"></div>
     
     <div class="loading" id="loadDiv">
       <img src="img/wikabedia.png" class="loading-icon">
@@ -55,11 +48,9 @@
     
     <hr>
     <footer>
-      <a class="not-a-button">copyirigt wikabedia 2024</a>
+      <a class="not-a-button">copyirigt wikabedia 2025</a>
       <a href="https://forms.gle/b74LRxjEW1LjT2aP8">maek an article 4 FRE!</a>
       <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
-      <!-- <a href="mailto:support@b-dog.co?subject=ButterDogCo%20Support&body=My%20problem%20is%3A%0A%0AMy%20name%20is%3A">contak suport</a> -->
-      <!--<a href="Articles/article?article=latest" id="latestArticleButton">view LATES ARTICAL</a>-->
     </footer>
 
     <script src="js/main.js"></script>
