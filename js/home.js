@@ -7,9 +7,6 @@ function sleep(milliseconds) {
 }
 
 function load(head,text,image,url,e) {
-  try {
-    createLog("log", image);
-  } catch (err) {}
 
   web = `site('${url}')`;
   const div = document.createElement('div');
@@ -70,14 +67,14 @@ function search2(key) {
   }
 }
 
-function sheetData(c1,c2) {
-  const spreadsheetId = '1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg';
-  const range = 'wikabedia!' + c1 + ":" + c2; // Specify the sheet name and range
+// function sheetData(c1,c2) {
+//   const spreadsheetId = '1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg';
+//   const range = 'wikabedia!' + c1 + ":" + c2; // Specify the sheet name and range
 
-  fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE`)
-    .then(response => response.json())
-    .then(data => {
-      // Process the data
-      return data;
-    });
-}
+//   fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE`)
+//     .then(response => response.json())
+//     .then(data => {
+//       // Process the data
+//       return data;
+//     });
+// }

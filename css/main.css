@@ -3,130 +3,133 @@
 
 /* Variables */
 :root {
-    /* Light Versions */
-    --backgroundlight1: white;
-    --backgroundlight2: rgb(240, 240, 240);
-    --backgroundlight3: rgb(230, 230, 230);
-    --imagefilterlight: invert(0%);
-    --hometopgradientlight: rgba(255,255,255,0.6206524846266632);
-    --spinnercolorlight1: rgba(0,0,0,0.5);
-    
-    /* Dark Versions */
-    --backgrounddark1: rgb(20,20,40);
-    --backgrounddark2: rgb(40,40,50);
-    --backgrounddark3: rgb(140,140,140);
-    --logobackground: white;
-    --imagefilterdark: invert(100%);
-    --hometopgradientdark: rgba(40,40,50,0.6206524846266632);
-    --spinnercolordark1: rgba(0,0,30,0.5);
-  
-    --textlight1: black;
-    --textlight3: rgb(110,110,110);
-    --textdark1: white;
-    --textdark3: rgb(160,160,160);
-    
-    --background1: var(--backgroundlight1);
-    --background2: rgb(240, 240, 240);
-    --background3: var(--backgroundlight3);
-    --background4: #f3f3f3;
-    
-    --spinnercolor1: rgba(0,0,0,0.5);
-    
-    --imagefilter: var(--imagefilterlight);
-    
-    --hometopgradient: var(--hometopgradientlight);
+  /* Light Versions */
+  --backgroundlight1: white;
+  --backgroundlight2: rgb(240, 240, 240);
+  --backgroundlight3: rgb(230, 230, 230);
+  --backgroundlight4: #f3f3f3;
+  --imagefilterlight: invert(0%);
+  --hometopgradientlight: rgba(255, 255, 255, 0.6206524846266632);
+  --spinnercolorlight1: rgba(0, 0, 0, 0.5);
 
-    --text1: var(--textlight1);
-    --text2: rgb(160, 160, 160);
-    --text3: var(--textlight3);
-    
-    --textlink1: rgb(120,120,240);
-    
-    --shadow1: 0px 0px 2vh rgba(0,0,0,0.1);
-    --shadow2: 0px 0px 2vh rgba(0,0,0,0.05);
-    --shadow3: 0px 0px 2vh rgba(0,0,0,0.75);
+  /* Dark Versions */
+  --backgrounddark1: rgb(20, 20, 40);
+  --backgrounddark2: rgb(40, 40, 50);
+  --backgrounddark3: rgb(140, 140, 140);
+  --backgrounddark4: #292929;
+  --logobackground: white;
+  --imagefilterdark: invert(100%);
+  --hometopgradientdark: rgba(40, 40, 50, 0.6206524846266632);
+  --spinnercolordark1: rgba(0, 0, 30, 0.5);
+
+  --textlight1: black;
+  --textlight3: rgb(110, 110, 110);
+  --textdark1: white;
+  --textdark3: rgb(160, 160, 160);
+
+  --background1: var(--backgroundlight1);
+  --background2: rgb(240, 240, 240);
+  --background3: var(--backgroundlight3);
+  --background4: #f3f3f3;
+  --background5: #f3f3f3;
+
+  --spinnercolor1: rgba(0, 0, 0, 0.5);
+
+  --imagefilter: var(--imagefilterlight);
+
+  --hometopgradient: var(--hometopgradientlight);
+
+  --text1: var(--textlight1);
+  --text2: rgb(160, 160, 160);
+  --text3: var(--textlight3);
+
+  --textlink1: rgb(120, 120, 240);
+
+  --shadow1: 0px 0px 2vh rgba(0, 0, 0, 0.1);
+  --shadow2: 0px 0px 2vh rgba(0, 0, 0, 0.05);
+  --shadow3: 0px 0px 2vh rgba(0, 0, 0, 0.75);
 }
 
 /* Animations */
 @keyframes item {
-    0% {
-        transform: translateX(-20%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateX(0%);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn2 {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    50% {
-        opacity: 1;
-    }
+  50% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeIn3 {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    50% {
-        opacity: 0;
-    }
+  50% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Elements */
 * {
-    font-family: inherit;
-    color: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 html {
-    font-family: 'Dm Sans', sans-serif;
+  font-family: 'Dm Sans', sans-serif;
 }
 
 body {
-    background: var(--background1);
-    font-family: 'Dm Sans', sans-serif;
-    margin: 0;
-    animation: fadeIn 0.2s ease;
-    max-width: 100vw;
-    min-width: 100vw;
-    overflow-x: hidden;
-    transition: 0.2s ease;
+  background: var(--background1);
+  font-family: 'Dm Sans', sans-serif;
+  margin: 0;
+  animation: fadeIn 0.2s ease;
+  max-width: 100vw;
+  min-width: 100vw;
+  overflow-x: hidden;
+  transition: 0.2s ease;
 }
 
 .loading {
@@ -146,13 +149,15 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   filter: var(--imagefilter);
 }
 
 .loading-spinner {
-  border: 16px solid var(--spinnercolor1); /* Background */
-  border-top: 16px solid var(--background3); /* Bar color */
+  border: 16px solid var(--spinnercolor1);
+  /* Background */
+  border-top: 16px solid var(--background3);
+  /* Bar color */
   border-radius: 50%;
   width: 10vh;
   height: 10vh;
@@ -160,10 +165,11 @@ body {
   position: fixed;
   top: calc(50% - 6.75vh);
   left: calc(50% - 6.75vh);
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
-.items, #items {
+.items,
+#items {
   display: inline-flex;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -174,7 +180,8 @@ body {
   overflow-y: hidden;
 }
 
-.item, #item {
+.item,
+#item {
   animation: item 0.5s ease;
   width: 225px;
   min-width: 225px;
@@ -195,9 +202,9 @@ body {
 .item:hover {
   filter: brightness(90%);
   box-shadow: var(--shadow2);
-  
+
   img {
-    mask-image: linear-gradient(to top, rgba(0,0,0,0.4) 10%,rgba(0,0,0,1) 100%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 10%, rgba(0, 0, 0, 1) 100%);
   }
 }
 
@@ -206,7 +213,7 @@ body {
   height: 100%;
   cursor: pointer;
   border-radius: 2vh;
-  mask-image: linear-gradient(to top, rgba(0,0,0,0.2) 30%,rgba(0,0,0,1) 100%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 1) 100%);
   transition: 0.2s ease;
 }
 
@@ -226,31 +233,97 @@ body {
   font-size: 1.5vh;
 }
 
-.search {
-  padding: 2vh;
-  border-radius: 5vh;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  width: 2.5vh;
-  height: 2.5vh;
+
+.logoDiv {
   position: fixed;
-  top: 0;
-  right: 0;
-  margin: 2vh;
+  padding: 20px;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   background: var(--background2);
-  /*overflow-x: hidden;*/
-  transition: 0.3s ease;
+  cursor: pointer;
   z-index: 2;
-  box-shadow: 0px 0px 2vh var(--shadow3);
+  transition: 0.1s ease;
+  box-shadow: 0px 0px 20px var(--shadow3);
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    filter: brightness(95%) var(--imagefilter);
+  }
 }
 
-.search:hover {
-  width: 20vh;
+.logoDiv:hover {
+  filter: brightness(90%);
 }
 
-.search input:focus ~ .search {
-  background: var(--background2);
+.topButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+
+  div {
+    padding: 20px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 15px;
+    background: var(--background2);
+    transition: 0.3s ease;
+    z-index: 2;
+    box-shadow: 0px 0px 20px var(--shadow3);
+    cursor: pointer;
+    overflow: hidden;
+    margin-left: auto;
+
+    * {
+      cursor: inherit;
+    }
+
+    img {
+      position: relative;
+      height: 100%;
+      object-fit: contain;
+      float: right;
+      filter: var(--imagefilter);
+    }
+
+    p {
+      position: absolute;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto;
+      opacity: 0;
+      transition: 0.2s ease;
+      color: var(--text1);
+      white-space: nowrap;
+      float: left;
+    }
+  }
+
+  div:hover {
+    width: 170px;
+    filter: brightness(95%);
+
+    p {
+      opacity: 1;
+    }
+  }
+}
+
+.search:hover,
+.search:has(> input:focus) {
+  width: 200px !important;
 }
 
 #searchBoxautocomplete-list {
@@ -265,94 +338,41 @@ body {
   color: var(--text1);
 }
 
-.search:hover #searchBoxautocomplete-list {
+.search:hover #searchBoxautocomplete-list,
+.search:has(> input:focus) #searchBoxautocomplete-list,
+.search:has(> input:focus) input,
+.search:hover input,
+.search:hover {
   opacity: 1;
 }
 
-.search:hover input {
-  opacity: 1;
+.search input:focus {
+  outline: var(--text1) 2px solid;
 }
 
 .search input {
-  width: 15vh;
-  height: 2.5vh;
-  margin-top: -1vh;
-  margin-left: -.75vh;
+  width: 150px;
+  height: 25px;
+  margin-top: -10px;
+  margin-left: -7.5px;
   position: fixed;
-  padding: 1vh;
-  border-radius: 4vh;
+  padding: 10px;
+  border-radius: 20px;
   outline: none;
   border: none;
   opacity: 0;
-  transition: 0.3s ease;
+  cursor: text;
+  transition: 0.15s ease;
   background: var(--background1);
   color: var(--text1);
   z-index: 2;
-}
-
-.search img {
-  width: 2.5vh;
-  height: 2.5vh;
-  float: right;
-  cursor: pointer;
-  filter: var(--imagefilter);
-  z-index: 2;
-  position: relative;
+  font-size: 16px;
 }
 
 .search div {
   position: relative;
-  width: 20vh;
-  margin-top: 2vh;
-}
-
-.editButton {
-  padding: 2vh;
-  border-radius: 5vh;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  width: 2.5vh;
-  height: 2.5vh;
-  position: fixed;
-  top: 8vh;
-  right: 0;
-  margin: 2vh;
-  background: var(--background2);
-  transition: 0.3s ease;
-  z-index: 2;
-  box-shadow: 0px 0px 2vh var(--shadow3);
-  cursor: pointer;
-  overflow: hidden;
-  
-  img {
-    height: 100%;
-    object-fit: contain;
-    position: relative;
-    float: right;
-    margin-top: -18px;
-    filter: var(--imagefilter);
-  }
-  
-  p {
-    position: relative;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 5vh;
-    opacity: 0;
-    transition: 0.2s ease;
-    color: var(--text1);
-  }
-}
-
-.editButton:hover {
-  filter: brightness(90%);
-  width: 5vw;
-  
-  p {
-    opacity: 1;
-  }
+  width: 200px;
+  margin-top: 20px;
 }
 
 footer {

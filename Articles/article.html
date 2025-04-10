@@ -15,8 +15,9 @@
 </head>
 
 <body>
-  <img src="../img/wikabedia.png" class="logo" onclick="site('../index.html')">
-  <img src="../img/back.png" class="logo2" onclick="site('../index.html')">
+  <div class="logoDiv" onclick="site('../')">
+    <img src="../img/back.png">
+  </div>
   <h1 class="logoText">wikabedia</h1>
   <br>
   <div class="article">
@@ -24,7 +25,7 @@
       <img src="../img/wikabedia.png" id="articleImg">
     </div>
     <h1 class="articleTitle" id="articleTitle">loading</h1>
-    <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage</pre>
+    <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage (or this article literally doesn't exist)</pre>
     <p class="articleWriter" id="articleWriter">article by your mother</p>
     <p class="articleWriter" id="articleDate">created 09/49/1948</p>
   </div>
@@ -39,8 +40,8 @@
   </div>
 
   <footer>
-    <a class="not-a-button">copyirigt wikabedia 2024</a>
-    <a href="https://forms.gle/b74LRxjEW1LjT2aP8">maek an article 4 FRE!</a>
+    <a class="not-a-button">copyirigt wikabedia 2025</a>
+    <a href="../creator.html">maek an article 4 FRE!</a>
     <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
   </footer>
 
@@ -52,28 +53,7 @@
   <script>
     var url = new URL(window.location);
     var articleNum = url.searchParams.get("article");
-    var responseCount = 0;
-    
-    function responseCountFunc() {
-      const spreadsheetId = "1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg";
-      const sheetName = "Form Responses 2";
-      const sheetId = "AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE";
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${sheetId}`;
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          responseCount = data.values.length - 1; // Subtract 1 to exclude header row
-          if (articleNum === "latest") {
-            articleNum = responseCount;
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
-
-    responseCountFunc();
+    let _backupArticleText;
     
     function processTags(text) {
       var first = text.replaceAll("<", "&lt");
@@ -100,79 +80,73 @@
       var second = processURLs(first);
       return second;
     }
+
+    const columns = [
+      "A", // date
+      "B", // email
+      "C", // name
+      "D", // title
+      "E", // desc
+      "F", // image
+      "G", // articleTitle
+      "H", // mainText
+      "I", // appropriate or not
+    ]
+
+    function processArticleText(text) {
+      return processText(text);
+    }
     
-    function sheetData(c1, id, mode) {
-      const spreadsheetId = '1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg';
-      const range = 'Form Responses 2!' + c1;
+    async function sheetData(column, id, mode) {
+      try {
+        const data = await getSheetData();
+        let val = data ? data[articleNum - 1][columns.indexOf(column)] : undefined;
 
-      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE`)
-        .then(response => response.json())
-        .then(data => {
-          let val = data.values;
-          if (mode === "image") {
-            try {
-              const linkPattern = /^https:\/\/drive\.google\.com\/open\?id=.*/;
-              const valStr = val.toString();
-
-              if (linkPattern.test(valStr)) {
-                const imageId = valStr.replace('https://drive.google.com/open?id=', '');
-                const newImageUrl = `https://drive.google.com/thumbnail?id=${imageId}`;
-                document.getElementById(id).src = newImageUrl;
-              } else {
-                // If it's not a specific Google Drive link, assign val as the image source
-                document.getElementById(id).src = valStr;
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          } else if (mode === "title") {
-            if (val === undefined) {
-              document.getElementById(id).innerHTML = "tis article no exist i tink";
-            } else {
-              document.getElementById(id).innerHTML = val;
-            }
-          } else if (mode === "text") {
-            if (val === undefined) {
-              document.getElementById(id).innerText = "i forgor the text";
-            } else {
-              document.getElementById(id).innerHTML = processText(`${val}`);
-            }
-          } else if (mode === "writer") {
-            if (val === undefined) {
-              document.getElementById(id).innerHTML = ''.concat("article by ", "your mother");
-            } else {
-              document.getElementById(id).innerHTML = ''.concat("article by ", val);
-            }
-          } else if (mode === "pageTitle") {
-            if (val === undefined) {
-              document.title = "nothing - wikabedia";
-            } else {
-              document.title = val + " - wikabedia";
-            }
-          } else if (mode === "dateMade") {
-            if (val === undefined) {
-              document.getElementById(id).innerHTML = 'created tomorrow';
-            } else {
-              document.getElementById(id).innerHTML = 'created ' + val;
-            }
-          } else if (mode === "approved") {
-            if (val.toString() === 'no') {
-              window.location.href = "../Articles/article.html?article=1";
-              alert("this article has been removed by a moderator");
-            }
+        if (mode === "image") {
+          try {
+          const linkPattern = /^https:\/\/drive\.google\.com\/open\?id=.*/;
+          if (linkPattern.test(val)) {
+            const imageId = val.replace('https://drive.google.com/open?id=', '');
+            const newImageUrl = `https://drive.google.com/thumbnail?id=${imageId}`;
+            document.getElementById(id).src = newImageUrl;
+          } else {
+            document.getElementById(id).src = val;
           }
+          } catch (err) {
+          console.error(err);
+          }
+        } else if (mode === "title") {
+          document.getElementById(id).innerHTML = val === undefined ? "tis article no exist i tink" : val;
+        } else if (mode === "text") {
+          _backupArticleText = val;
+          document.getElementById(id).innerHTML = val === undefined ? "i forgor the text" : processArticleText(val);
+        } else if (mode === "writer") {
+          document.getElementById(id).innerHTML = val === undefined ? "article by your mother" : `article by ${val}`;
+        } else if (mode === "pageTitle") {
+          document.title = val === undefined ? "nothing - wikabedia" : `${val} - wikabedia`;
+        } else if (mode === "dateMade") {
+          document.getElementById(id).innerHTML = val === undefined ? 'created tomorrow' : `created ${val}`;
+        }
 
-          return val;
-        });
+        return val;
+      } catch (error) {
+        document.getElementById('articleTitle').innerHTML = "error loading article";
+        console.error(error);
+      }
     }
 
-    sheetData("I" + articleNum, "", "approved");
-    sheetData("G" + articleNum, "articleTitle", "title");
-    sheetData("H" + articleNum, "articleText", "text");
-    sheetData("F" + articleNum, "articleImg", "image");
-    sheetData("C" + articleNum, "articleWriter", "writer");
-    sheetData("G" + articleNum, "", "pageTitle");
-    sheetData("A" + articleNum, "articleDate", "dateMade");
+    const approved = sheetData("I", "", "approved");
+    if (approved === "no") {
+      window.location.href = "../Articles/article.html?article=1";
+      alert("this article has been removed by a moderator");
+    } else {
+      sheetData("G", "articleTitle", "title");
+      sheetData("H", "articleText", "text");
+      sheetData("F", "articleImg", "image");
+      sheetData("C", "articleWriter", "writer");
+      sheetData("G", "", "pageTitle");
+      sheetData("A", "articleDate", "dateMade");
+    }
 
     function checkLoad() {
       if (document.getElementById('articleTitle').innerHTML != "loading" == false) {
@@ -185,14 +159,6 @@
       }
     }
     checkLoad();
-
-    // C = name
-    // D = title
-    // E = desc
-    // F = image
-    // G = articleTitle
-    // H = mainText
-    // I = appropriate or not
   </script>
   <script src="../js/recomend.js"></script>
 </body>

@@ -34,20 +34,25 @@
   }
   
   .logo {
-    width: 8vh;
-    height: 8vh;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-top: 20px;
+    margin-left: calc(50% - 8px);
     transform: translateX(-50%);
-    margin-left: 50%;
-    margin-top: 2vh;
-    filter: brightness(95%) var(--imagefilter);
-    border-radius: 100vh;
     background: var(--background4);
-    padding: 2vh;
-    box-shadow: 0px 0px 2vh var(--shadow1);
-  }
-  
-  .logo2 {
-    display: none;
+    border-radius: 50%;
+    padding: 20px;
+    cursor: default;
+    animation: none;
+    box-shadow: 0px 0px 20px var(--shadow1);
+
+    img {
+      filter: brightness(95%) var(--imagefilter);
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
   }
   
   /* @media (max-width:960px) {
@@ -89,15 +94,17 @@
   }
   
   .headImageGradient {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
     z-index: 0;
   }
   
   .headImageGradient::after {
     content: "";
     position: absolute;
-    top: -17vh;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;

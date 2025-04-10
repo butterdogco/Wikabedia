@@ -1,18 +1,5 @@
 // This is the directory of every article in Wikabedia, every article has an ID (the number it is down the list + 1)
 
-// function getSheetData2(c1, c2) {
-//   const spreadsheetId = '1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg';
-//   const range = 'Form Responses 2!' + c1; // Specify the sheet name and range
-
-//   fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE`)
-//     .then(response => response.json())
-//     .then(data => {
-//       let val = data.values;
-
-//       return val;
-//     });
-// }
-
 // C = name
 // D = title
 // E = desc
@@ -130,32 +117,40 @@ let data = [
   }
 ];
 
-let done = false;
-
-function getData() {
-  const spreadsheetId = "1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg";
-  const sheetName = "Form Responses 2";
-  const sheetId = "AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE";
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${sheetId}`;
-
-  fetch(url)
-    .then(response => response.json())
-    .then(dat => {
-      if (dat) {
-        const responseData = formatData(dat);
-        data.push(...responseData);
-        done = true;
-      }
+// Send a POST request to the server to get the data from the Google Sheet, and return the data
+async function getSheetData() {
+  const url = "https://wikabedia-backend.fly.dev/get";
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      sheet: "WIKABEDIA",
     })
-    .catch(error => console.error(error));
+  };
+
+  const response = await fetch(url, options);
+  const sheetData = await response.json();
+  return sheetData.data;
+}
+
+let done = false;
+async function getData() {
+  if (!done) {
+    const dat = await getSheetData();
+    data.push(...formatData(dat));
+    done = true;
+  }
+  return data;
 }
 
 function formatData(dat) {
   const formattedData = [];
   var articleCount = 0;
 
-  for (let i = 1; i < dat.values.length; i++) {
-    const response = dat.values[i];
+  for (let i = 1; i < dat.length; i++) {
+    const response = dat[i];
     const responseNumber = i + 1; // add 1 to ignore header
     var imageURL = "img/wikabedia%20icon.png";
 
@@ -184,10 +179,8 @@ function formatData(dat) {
 
       // log the image url for debugging
       try {
-        createLog("log", image);
         image = image.replace("../", "");
       } catch (err) {
-        createLog("error", image, "none", "image.replace - articlesDir.js");
         console.error(err);
       }
 
@@ -201,7 +194,9 @@ function formatData(dat) {
         approved: response[8]
       };
 
-      formattedData.push(item);
+      if (item.approved != 'no') {
+        formattedData.push(item);
+      }
     }
   }
 

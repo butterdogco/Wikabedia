@@ -2,32 +2,57 @@
 <html>
 
 <head>
-  <title id="pageTitle">creator - wikabedia</title>
-  <link rel="shortcut icon" href="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.ico?raw=true">
+  <title id="pageTitle">article - wikabedia</title>
+  <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="img/wikabedia%20icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <link rel="stylesheet" href="css/creator.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="a wikabedia artical">
 </head>
 
 <body>
-  <img src="img/wikabedia.png" class="logo" onclick="site('index.html')">
-  <img src="img/back.png" class="logo2" onclick="site('index.html')">
+  <div class="logoDiv" onclick="site('../')">
+    <img src="img/back.png">
+  </div>
   <h1 class="logoText">wikabedia</h1>
   <br>
   <div class="article">
     <div class="articleImage">
-      <img src="img/wikabedia.png" id="articleImg">
+      <img src="img/wat-da-dog.jpg" id="articleBackgroundImage">
     </div>
-    <h1 class="articleTitle" id="articleTitle" contenteditable="true" onkeypress="return (this.innerText.length <= 73)" onpaste="return false" max="73">title</h1>
-    <pre class="articleText" id="articleText" contenteditable="true">article text</pre>
-    <p class="articleWriter" id="articleWriter">article by you</p>
-    <p class="articleWriter" id="articleDate">created now</p>
+    <form id="articleForm" onsubmit="return false;">
+      <input class="articleTitle" id="articleTitle" type="text" required title="Article title goes here" placeholder="Write a title..." maxlength="28"></input>
+      <div class="textTools">
+        <button id="insertLink" class="link" type="button" title="Insert link"><img src="img/link.png"></button>
+      </div>
+      <textarea class="articleText" id="articleText" type="text" required spellcheck="true" title="Article text goes here" placeholder="Write something amazing, illegal, stupid . . ."></textarea>
+      <div class="articleExtra">
+        <div class="cardDesign">
+          <img id="articleImagePreview" title="Upload image" src="img/Image upload hint.png">
+          <input id="articleImage" type="file" accept="image/*">
+          <input id="articleCardTitle" required placeholder="Article title..." title="This title is displayed on the home page" type="text" maxlength="20">
+          <input id="articleCardDesc" required placeholder="Short description..." title="This description is displayed on the home page" type="text" maxlength="28">
+        </div>
+        <div class="extraInputs">
+          <input id="articleWriter" type="name" required title="Your name goes here" placeholder="Your name..." maxlength="100"></input>
+          <input id="articleEmail" type="email" required title="Your Email goes here" placeholder="Your Email..." maxlength="100"></input>
+          <button class="articleSubmit">Submit</button>
+        </div>
+      </div>
+      <p class="disclaimer">by posting an article on wikabedia, you agree to the ButterDogCo <a href="https://b-dog.co/tos" target="_blank">TOS</a> and <a href="https://b-dog.co/pp" target="_blank">PP</a> (haha pp)</p>
+    </form>
   </div>
+  <footer>
+    <a class="not-a-button">copyirigt wikabedia 2025</a>
+    <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
+  </footer>
 
   <script src="js/main.js"></script>
   <script src="js/creator.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 
 </html>
