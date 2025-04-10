@@ -41,7 +41,7 @@
 
   <footer>
     <a class="not-a-button">copyirigt wikabedia 2025</a>
-    <a href="https://forms.gle/b74LRxjEW1LjT2aP8">maek an article 4 FRE!</a>
+    <a href="../creator.html">maek an article 4 FRE!</a>
     <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
   </footer>
 
@@ -52,7 +52,8 @@
   <script src="../js/autocomplete.js"></script>
   <script>
     var url = new URL(window.location);
-    var articleNum = url.searchParams.get("article");  
+    var articleNum = url.searchParams.get("article");
+    let _backupArticleText;
     
     function processTags(text) {
       var first = text.replaceAll("<", "&lt");
@@ -91,6 +92,10 @@
       "H", // mainText
       "I", // appropriate or not
     ]
+
+    function processArticleText(text) {
+      return processText(text);
+    }
     
     async function sheetData(column, id, mode) {
       try {
@@ -113,7 +118,8 @@
         } else if (mode === "title") {
           document.getElementById(id).innerHTML = val === undefined ? "tis article no exist i tink" : val;
         } else if (mode === "text") {
-          document.getElementById(id).innerHTML = val === undefined ? "i forgor the text" : processText(`${val}`);
+          _backupArticleText = val;
+          document.getElementById(id).innerHTML = val === undefined ? "i forgor the text" : processArticleText(val);
         } else if (mode === "writer") {
           document.getElementById(id).innerHTML = val === undefined ? "article by your mother" : `article by ${val}`;
         } else if (mode === "pageTitle") {

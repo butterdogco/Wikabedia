@@ -1,105 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>wikabedia</title>
-    <link rel="shortcut icon" href="img/wikabedia.ico">
-    <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="te worlds source of infomation">
-  </head>
-  <body>
-    <div class="headImageGradient" id="headImageGradient">
-      <div class="headImage" id="headImage"></div>
-    </div>
-    <div class="logo">
-      <img src="img/wikabedia.png">
-    </div>
-    <h1 class="logoText" id="logoText">welcom to wikabedia</h1>
-    <p class="logoDesc">te worlds source of infomation</p>
-    <div class="topButtons">
-      <div class="search">
-        <img src="img/search.png" onclick="search()">
-        <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
-      </div>
-      <div class="create" onclick="site('creator.html')">
-        <img src="img/create.png">
-        <p>create article</p>
-      </div>
-    </div>
-    <br>
-    <hr>
-    <h2 class="all" onclick="load('no don click me','why did you click that','img/wikabedia.png','#','items');">lates article</h2>
-    <div class="items" id="items"></div>
-    <h2 class="toparticle" onclick="load('yor mom','haha','img/creating-a-piep-bom.jpg','#','top')">top articals of panet earht</h2>
-    <div class="items" id="top"></div>
-    
-    <h2 class="recomend" onclick="load('yuo smel','imagien','img/creating-a-piep-bom.jpg','#','recomend')">recomend article</h2>
-    <div class="items" id="recomend"></div>
-    
-    <div class="loading" id="loadDiv">
-      <img src="img/wikabedia.png" class="loading-icon">
-      <div class="loading-spinner"></div>
-    </div>
-    
-    <hr>
-    <footer>
-      <a class="not-a-button">copyirigt wikabedia 2025</a>
-      <a href="https://forms.gle/b74LRxjEW1LjT2aP8">maek an article 4 FRE!</a>
-      <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
-    </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/articlesDir.js"></script>
-    <script src="js/home.js"></script>
-    <script src="js/recomend.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/backgroundImage.js"></script>
-    <script src="js/autocomplete.js"></script>
-    <script>
-      function createDefaults() {
-        if (done === false) {
-          setTimeout(createDefaults,100);
-        } else {
-          try {
-            for (var item of data) {
-              if (item.title && item.desc && item.image && item.link && item.place) {
-                load(item.title, item.desc, item.image, item.link, item.place);
-              }
+<head>
+  <title>wikabedia</title>
+  <link rel="shortcut icon" href="img/wikabedia.ico">
+  <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/home.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="te worlds source of infomation">
+</head>
+
+<body>
+  <div class="headImageGradient" id="headImageGradient">
+    <div class="headImage" id="headImage"></div>
+  </div>
+  <div class="logo">
+    <img src="img/wikabedia.png">
+  </div>
+  <h1 class="logoText" id="logoText">welcom to wikabedia</h1>
+  <p class="logoDesc">te worlds source of infomation</p>
+  <div class="topButtons">
+    <div class="search">
+      <img src="img/search.png" onclick="search()">
+      <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
+    </div>
+    <div class="create" onclick="site('creator.html')">
+      <img src="img/create.png">
+      <p>create article</p>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <h2 class="all" onclick="load('no don click me','why did you click that','img/wikabedia.png','#','items');">lates article</h2>
+  <div class="items" id="items"></div>
+  <h2 class="toparticle" onclick="load('yor mom','haha','img/creating-a-piep-bom.jpg','#','top')">top articals of panet earht</h2>
+  <div class="items" id="top"></div>
+
+  <h2 class="recomend" onclick="load('yuo smel','imagien','img/creating-a-piep-bom.jpg','#','recomend')">recomend article</h2>
+  <div class="items" id="recomend"></div>
+
+  <div class="loading" id="loadDiv">
+    <img src="img/wikabedia.png" class="loading-icon">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <hr>
+  <footer>
+    <a class="not-a-button">copyirigt wikabedia 2025</a>
+    <a href="/creator.html">maek an article 4 FRE!</a>
+    <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/articlesDir.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/recomend.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/backgroundImage.js"></script>
+  <script src="js/autocomplete.js"></script>
+  <script>
+    function createDefaults() {
+      if (done === false) {
+        setTimeout(createDefaults, 100);
+      } else {
+        try {
+          for (var item of data) {
+            if (item.title && item.desc && item.image && item.link && item.place) {
+              load(item.title, item.desc, item.image, item.link, item.place);
             }
-            
-            const e = data[3];
-            const f = data[13];
-            const g = data[9];
-            load(e.title,e.desc,e.image,e.link,"top");
-            load(f.title,f.desc,f.image,f.link,"top");
-            load(g.title,g.desc,g.image,g.link,"top");
           }
-          catch (err) {
-            console.error(err);
-          }
-        }
-      }
-      
-      function checkLoad() {
-        if(done === true) {
-          document.getElementById('loadDiv').style.opacity = 0;
-          document.getElementById('loadDiv').remove();
+
           const parent = document.getElementById("items");
           const arr = Array.from(parent.childNodes);
           arr.reverse();
           parent.append(...arr);
-        } else {
-          setTimeout(checkLoad,150);
+
+          const e = data[3];
+          const f = data[13];
+          const g = data[9];
+          load(e.title, e.desc, e.image, e.link, "top");
+          load(f.title, f.desc, f.image, f.link, "top");
+          load(g.title, g.desc, g.image, g.link, "top");
+        }
+        catch (err) {
+          console.error(err);
         }
       }
-      
-      setTimeout(createDefaults, 100);
-      setTimeout(checkLoad, 150);
-    </script>
-  </body>
+    }
+
+    function checkLoad() {
+      if (done === true) {
+        document.getElementById('loadDiv').style.opacity = 0;
+        document.getElementById('loadDiv').remove();
+        
+      } else {
+        setTimeout(checkLoad, 150);
+      }
+    }
+
+    setTimeout(createDefaults, 100);
+    setTimeout(checkLoad, 150);
+  </script>
+</body>
+
 </html>

@@ -13,13 +13,20 @@
     <meta name="description" content="find teh wikabedia artical">
   </head>
   <body>
-    <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true" class="logo" onclick="site('index.html')">
-    <img src="img/back.png" class="logo2" onclick="site('index.html')">
+    <div class="logoDiv" onclick="site('../')">
+      <img src="img/back.png">
+    </div>
     <h1 class="logoText">wikabedia</h1>
     <br>
-    <div class="search">
-      <img src="img/search.png" onclick="search('page')">
-      <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
+    <div class="topButtons">
+      <div class="search">
+        <img src="img/search.png" onclick="search()">
+        <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
+      </div>
+      <div class="create" onclick="site('creator.html')">
+        <img src="img/create.png">
+        <p>create article</p>
+      </div>
     </div>
     <h3 id="queryText">serch 4 somting</h3>
     <div class="search2">

@@ -31,6 +31,7 @@
     --background2: rgb(240, 240, 240);
     --background3: var(--backgroundlight3);
     --background4: #f3f3f3;
+    --background5: #f3f3f3;
     
     --spinnercolor1: rgba(0,0,0,0.5);
     
@@ -355,6 +356,7 @@ body {
   outline: none;
   border: none;
   opacity: 0;
+  cursor: text;
   transition: 0.15s ease;
   background: var(--background1);
   color: var(--text1);

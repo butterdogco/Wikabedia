@@ -131,16 +131,15 @@ async function getSheetData() {
   };
 
   const response = await fetch(url, options);
-  const data = await response.json();
-  return data.data;
+  const sheetData = await response.json();
+  return sheetData.data;
 }
 
 let done = false;
 async function getData() {
   if (!done) {
     const dat = await getSheetData();
-    // console.log(dat);
-    data = formatData(dat);
+    data.push(...formatData(dat));
     done = true;
   }
   return data;
@@ -195,7 +194,9 @@ function formatData(dat) {
         approved: response[8]
       };
 
-      formattedData.push(item);
+      if (item.approved != 'no') {
+        formattedData.push(item);
+      }
     }
   }
 

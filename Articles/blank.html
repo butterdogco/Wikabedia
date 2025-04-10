@@ -11,8 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <img src="../img/wikabedia.png" class="logo" onclick="site('../index.html')">
-    <img src="../img/back.png" class="logo2" onclick="site('../index.html')">
+    <div class="logoDiv" onclick="site('../')">
+      <img src="../img/back.png">
+    </div>
     <h1 class="logoText">wikabedia</h1>
     <br>
     <div class="article">
@@ -39,12 +40,7 @@
       
     <script src="../js/articlesDir.js"></script>
     <script src="../js/article.js"></script>
-    <script>
-      window.onerror = function(error) {
-        // do something clever here
-        alert("We've ran into a problem, please report the following text on the GitHub page: " + error); // do NOT do this for real!
-      };
-    </script>
+
     <script src="../js/recomend.js"></script>
   </body>
 </html>
