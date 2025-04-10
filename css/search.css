@@ -1,183 +1,190 @@
 @import url(main.css);
-  
-  h1 {
-    font-size: 4vh;
-    cursor: default;
-    font-weight: 400px;
-    cursor: default;
-  }
-  
-  .logoText {
-    margin-top: -7vh;
-    font-size: 4vh;
-    margin-left: 12vh;
-    color: var(--text1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-top: 5vh;
-    font-size: 3vh;
-    font-weight: bold;
-    cursor: default;
-  }
-  
-  
-  hr {
-    border: 0.1vh solid rgb(230,230,230);
-    margin: 0;
-    width: 100vw;
-    height: 0vh;
-  }
-  
-  .logo {
-    width: 4vh;
-    height: 4vh;
-    margin-left: 2vh;
-    margin-top: 2vh;
-    filter: brightness(95%) var(--imagefilter);
-    border-radius: 100vh;
-    background: var(--background4);
-    padding: 2vh;
-    cursor: pointer;
-    animation: fadeIn3 4s ease-in-out;
-    animation-iteration-count: 9999999;
-    animation-direction: reverse;
-    z-index: 5;
-    position: relative;
-  }
-  
-  .logo2 {
-    opacity: 0;
-    width: 4vh;
-    height: 4vh;
-    margin-left: -8.5vh;
-    margin-top: 2vh;
-    filter: brightness(95%) var(--imagefilter);
-    border-radius: 100vh;
-    background: var(--background4);
-    padding: 2vh;
-    cursor: pointer;
-    position: static;
-    z-index: 1;
-    transition: 0.2s ease;
-    animation: fadeIn2 4s ease-in-out;
-    animation-iteration-count: 999999;
-    z-index: 6;
-    position: relative;
-  }
-  
-  .logo:hover ~ .logo2, .logo2:hover {
-    opacity: 1;
-    animation: none;
-  }
-  
-  .items, #items, .items2, #items2 {
-    display: inline-flex;
-    flex-wrap: wrap;
-    margin-left: 50%;
-    min-height: 850px;
-    overflow-y: scroll;
-    width: 100vw;
-    transform: translateX(-50%);
-  }
-  
-  .logoDesc, .logoText, .recomend {
-    cursor: default;
-    color: var(--text1);
-  }
-  
-  .logoDesc {
-    color: rgb(190,190,190);
-    text-align: center;
-    font-size: 1.9vh;
-  }
-  
-  .recomend::selection {
-    background: none;
-  }
-  
-  .articleTitle {
-    text-align: center;
-  }
-  
-  .articleText {
-    margin-left: 2vh;
-    height: 70vh;
-  }
-  
-  #pageName {
-    display: none;
-  }
-  
-  pre {
-    font-family: inherit;
-    cursor: default;
-  }
-  
-  p {
-    cursor: default;
-  }
-  
-  .articleWriter {
-    cursor: default;
-    color: rgb(160,160,160);
-    text-align: center;
-  }
-  
-  #notFound {
-    margin-left: 5vh;
-    color: rgb(160,160,160);
-  }
-  
-  #queryText {
-    margin-top: 100px;
-    margin-left: 30px;
-    color: rgb(130,130,130);
-  }
-  
-  #loadingImage {
-    height: 30vh;
-    width: 30vh;
-  }
-  
-  .search2 {
-    display: inline-flex;
-  }
-  
-  .search2 .icon {
-    padding: 1vh;
-    border: none;
-    outline: none;
-    font-weight: bold;
-    width: 2.5vh;
-    height: 2.5vh;
-    background: var(--background5);
-    overflow-x: hidden;
-    transition: 0.3s ease;
-    display: inline-flex;
-    margin-right: -3vh;
-    margin-left: 2vh;
-    cursor: pointer;
-    box-shadow: 0px 0px 2vh rgba(0,0,0,0.05);
-    filter: var(--imagefilter);
-    border-radius: 50%;
-  }
-  
-  #searchBox2 {
-    margin-left: 4vh;
-    width: 30vw;
-    height: 2.5vh;
-    padding: 1vh;
-    border-radius: 4vh;
-    outline: none;
-    border: none;
-    transition: 0.3s ease;
-    background: var(--background2);
-    box-shadow: 0px 0px 2vh rgba(0,0,0,0.05);
-    color: var(--text1);
-  }
-  
-  #searchBox2:focus {
-    box-shadow: 0px 0px 2vh rgba(0,0,0,0.1);
-  }
+
+h1 {
+  font-size: 4vh;
+  cursor: default;
+  font-weight: 400px;
+  cursor: default;
+}
+
+.logoText {
+  margin-top: -7vh;
+  font-size: 4vh;
+  margin-left: 12vh;
+  color: var(--text1);
+}
+
+h2 {
+  text-align: center;
+  margin-top: 5vh;
+  font-size: 3vh;
+  font-weight: bold;
+  cursor: default;
+}
+
+
+hr {
+  border: 0.1vh solid rgb(230, 230, 230);
+  margin: 0;
+  width: 100vw;
+  height: 0vh;
+}
+
+.logo {
+  width: 4vh;
+  height: 4vh;
+  margin-left: 2vh;
+  margin-top: 2vh;
+  filter: brightness(95%) var(--imagefilter);
+  border-radius: 100vh;
+  background: var(--background4);
+  padding: 2vh;
+  cursor: pointer;
+  animation: fadeIn3 4s ease-in-out;
+  animation-iteration-count: 9999999;
+  animation-direction: reverse;
+  z-index: 5;
+  position: relative;
+}
+
+.logo2 {
+  opacity: 0;
+  width: 4vh;
+  height: 4vh;
+  margin-left: -8.5vh;
+  margin-top: 2vh;
+  filter: brightness(95%) var(--imagefilter);
+  border-radius: 100vh;
+  background: var(--background4);
+  padding: 2vh;
+  cursor: pointer;
+  position: static;
+  z-index: 1;
+  transition: 0.2s ease;
+  animation: fadeIn2 4s ease-in-out;
+  animation-iteration-count: 999999;
+  z-index: 6;
+  position: relative;
+}
+
+.logo:hover~.logo2,
+.logo2:hover {
+  opacity: 1;
+  animation: none;
+}
+
+.items,
+#items,
+.items2,
+#items2 {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-left: 50%;
+  min-height: 850px;
+  overflow-y: scroll;
+  width: 100vw;
+  transform: translateX(-50%);
+}
+
+.logoDesc,
+.logoText,
+.recomend {
+  cursor: default;
+  color: var(--text1);
+}
+
+.logoDesc {
+  color: rgb(190, 190, 190);
+  text-align: center;
+  font-size: 1.9vh;
+}
+
+.recomend::selection {
+  background: none;
+}
+
+.articleTitle {
+  text-align: center;
+}
+
+.articleText {
+  margin-left: 2vh;
+  height: 70vh;
+}
+
+#pageName {
+  display: none;
+}
+
+pre {
+  font-family: inherit;
+  cursor: default;
+}
+
+p {
+  cursor: default;
+}
+
+.articleWriter {
+  cursor: default;
+  color: rgb(160, 160, 160);
+  text-align: center;
+}
+
+#notFound {
+  margin-left: 5vh;
+  color: rgb(160, 160, 160);
+}
+
+#queryText {
+  margin-top: 100px;
+  margin-left: 30px;
+  color: rgb(130, 130, 130);
+}
+
+#loadingImage {
+  height: 30vh;
+  width: 30vh;
+}
+
+.search2 {
+  display: inline-flex;
+}
+
+.search2 .icon {
+  padding: 1vh;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  width: 2.5vh;
+  height: 2.5vh;
+  background: var(--background5);
+  overflow-x: hidden;
+  transition: 0.3s ease;
+  display: inline-flex;
+  margin-right: -3vh;
+  margin-left: 2vh;
+  cursor: pointer;
+  box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.05);
+  filter: var(--imagefilter);
+  border-radius: 50%;
+}
+
+#searchBox2 {
+  margin-left: 4vh;
+  width: 30vw;
+  height: 2.5vh;
+  padding: 1vh;
+  border-radius: 4vh;
+  outline: none;
+  border: none;
+  transition: 0.3s ease;
+  background: var(--background2);
+  box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.05);
+  color: var(--text1);
+  font-size: 16px;
+}
+
+#searchBox2:focus {
+  box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.1);
+}
