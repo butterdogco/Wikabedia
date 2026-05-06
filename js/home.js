@@ -7,14 +7,15 @@ function sleep(milliseconds) {
 }
 
 function load(head,text,image,url,e) {
-
-  web = `site('${url}')`;
+  const web = `site('${url}')`;
+  
   const div = document.createElement('div');
-  const img = document.createElement('img');
-  const hding = document.createElement('h3');
-  const p = document.createElement('p');
   div.className = "item";
   div.setAttribute('onclick', web);
+  const img = document.createElement('img');
+  img.setAttribute("loading", "lazy");
+  const hding = document.createElement('h3');
+  const p = document.createElement('p');
   
   try {
     if (image.includes("../")) {
