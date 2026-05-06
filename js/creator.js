@@ -9,7 +9,7 @@ const articleCardDesc = form.querySelector("#articleCardDesc");
 const articleWriter = form.querySelector("#articleWriter");
 const articleEmail = form.querySelector("#articleEmail");
 const tool_insertLink = form.querySelector("#insertLink");
-const submitURL = "http://wikabedia-backend.fly.dev/submit";
+const submitURL = "https://wikabedia-backend.fly.dev/submit";
 const maxFileSizeMB = 8;
 let uploadedImage = null;
 
