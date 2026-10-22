@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <title>saerch - wikabedia</title>
     <link rel="shortcut icon" href="img/wikabedia.ico">
     <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
@@ -51,15 +52,15 @@
     <script src="js/theme.js"></script>
     <script src="js/autocomplete.js"></script>
     <script>
-      
+      const loadDiv = document.getElementById('loadDiv');
       function checkLoad() {
-        if(done === true) {
-          document.getElementById('loadDiv').style.opacity = 0;
-          window.setTimeout(function(){
-            document.getElementById('loadDiv').remove();
+        if (done === true) {
+          loadDiv.style.opacity = 0;
+          window.setTimeout(() => {
+            loadDiv.remove();
           }, 200);
         } else {
-          setTimeout(checkLoad,150);
+          setTimeout(checkLoad, 150);
         }
       }
       

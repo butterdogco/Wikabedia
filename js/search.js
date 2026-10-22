@@ -1,3 +1,13 @@
+const notFoundElement = document.getElementById('notFound');
+// nice element names they're really clear and descriptive
+const searchBoxContainerElement = document.getElementById('search');
+const searchDivElement = document.getElementById('searchDiv');
+const searchItemsElement = document.getElementById('searchItems');
+const searchQueryElement = document.getElementById('searchQuery');
+const searchBoxElement = document.getElementById('searchBox');
+const searchBox2Element = document.getElementById('searchBox2');
+const searchIgnoredWords = ['how', 'the', 'to', 'do'];
+
 function sleep(milliseconds) {
   const date = Date.now();
   let currentDate = null;
@@ -17,122 +27,113 @@ function updateQueryStringParameter(uri, key, value) {
   }
 }
 
-function load(head,text,image,url,e) {
-  web = "site('" + url + "')";
-  const div = document.createElement('div');
-  const img = document.createElement('img');
-  const hding = document.createElement('h3');
-  const p = document.createElement('p');
-  div.setAttribute('class','item');
-  div.setAttribute('onclick',web);
+function load(head, text, image, url, element) {
   if (image.includes("../")) {
     image = image.replace("../", "");
   }
-  img.setAttribute('src',image);
-  hding.innerHTML = head;
-  p.innerHTML = text;
-  
-  if (e === null) {
-    e = "items";
-  }
-  
+
   if (url === null) {
     url == "#";
   }
-  
-  document.getElementById(e).appendChild(div);
+
+  if (element === null) {
+    element = "items";
+  }
+
+  const div = document.createElement('div');
+  div.setAttribute('class','item');
+  div.addEventListener('click', () => site(url));
+
+  const img = document.createElement('img');
+  img.setAttribute('src', image);
   div.appendChild(img);
-  div.appendChild(hding);
+  
+  const heading = document.createElement('h3');
+  heading.innerHTML = head;
+  div.appendChild(heading);
+
+  const p = document.createElement('p');
+  p.innerHTML = text;
   div.appendChild(p);
+  
+  document.getElementById(element).appendChild(div);
 }
 
 function site(url) {
   document.body.style.opacity = 0;
-  setTimeout(function() {
-  window.location.href = url;
-  },250);
+  setTimeout(() => {
+    window.location.href = url;
+  }, 250);
 }
 
 async function search(mode) {
-  var searchItemsElement = document.getElementById("searchItems");
   searchItemsElement.innerHTML = "";
 
   // Get the URL of the current page
-  var url = new URL(window.location);
+  const url = new URL(window.location);
 
-  // Get the search query parameter from the URL
-  var searchQuery;
+  let searchQuery = '';
   if (mode === "load") {
     searchQuery = url.searchParams.get("search");
   } else if (mode === "page") {
-    searchQuery = document.getElementById('searchBox').value;
+    searchQuery = searchBoxElement.value;
     window.location.href = "?search=" + searchQuery;
   } else if (mode === "page2") {
-    searchQuery = document.getElementById('searchBox2').value;
+    searchQuery = searchBox2Element.value;
     url.searchParams.set("search", searchQuery);
+    window.history.pushState({}, '', url);
+  }
+
+  searchQueryElement.innerText = `saerched 4 "${searchQuery}"`;
+  searchBox2Element.value = searchQuery;
+
+  let exactMatches = [];
+  let partialMatches = [];
+
+  // Use the search query to perform a search or any other operations
+  // For example, search through a list of items
+  while (!done) {
+    await new Promise(resolve => setTimeout(resolve, 150));
   }
   
-  if (!searchQuery) {
-    searchQuery = '';
-  }
-
-  // Define the array of ignored words
-  var ignoredWords = ["how","the","to","do"];
-
-  // Perform the search operation if a search query exists
-  if (searchQuery) {
-    document.getElementById('queryText').innerHTML = ''.concat("saerched 4 '", searchQuery, "'");
-    document.getElementById('searchBox2').value = searchQuery;
-
-    var exactMatches = [];
-    var partialMatches = [];
-
-    // Use the search query to perform a search or any other operations
-    // For example, search through a list of items
-    while (!done) {
-      await new Promise(resolve => setTimeout(resolve, 150));
-    }
+  data.forEach(item => {
+    const words = searchQuery.split(' ');
+    let found = false;
     
-    data.forEach(item => {
-      var words = searchQuery.split(' ');
-      var found = false;
-      
-      ignoredWords.forEach((element) => {
-        if (!found && item.title && item.desc && item.tags) {
-          if (searchQuery === (element) || searchQuery === "how to") {
-            found = true;
-            match = words.some(word => (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
-          } else {
-            match = words.some(word => !ignoredWords.includes(word.toLowerCase()) && (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
-          }
-        }
-      });
-      
-      if (match) {
-        if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.desc.toLowerCase().includes(searchQuery.toLowerCase()) || item.tags.toLowerCase().includes(searchQuery.toLowerCase())) {
-          exactMatches.push(item);
+    searchIgnoredWords.forEach((element) => {
+      if (!found && item.title && item.desc && item.tags) {
+        if (searchQuery === (element) || searchQuery === "how to") {
+          found = true;
+          match = words.some(word => (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
         } else {
-          partialMatches.push(item);
+          match = words.some(word => !searchIgnoredWords.includes(word.toLowerCase()) && (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
         }
       }
     });
-
-    // Concatenate the arrays and load the results into the searchItemsElement
-    var results = exactMatches.concat(partialMatches);
-    results.forEach(item => {
-      var img = item.image;
-      load(item.title, item.desc, img, item.link, "searchItems");
-    });
-
-    if (document.getElementById('searchItems').hasChildNodes() === false && results.length === 0) {
-      const e = document.createElement('h4');
-      e.innerHTML = "sory, no find anyting like dis: '" + searchQuery + "'";
-      e.setAttribute("id","notFound");
-      document.getElementById('searchItems').appendChild(e);
-    } else {
-      if (document.getElementById('notFound')) {
-        document.getElementById('notFound').remove();
+    
+    if (match) {
+      if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.desc.toLowerCase().includes(searchQuery.toLowerCase()) || item.tags.toLowerCase().includes(searchQuery.toLowerCase())) {
+        exactMatches.push(item);
+      } else {
+        partialMatches.push(item);
       }
+    }
+  });
+
+  // Concatenate the arrays and load the results into the searchItemsElement
+  const results = exactMatches.concat(partialMatches);
+  results.forEach(item => {
+    load(item.title, item.desc, item.image, item.link, "searchItems");
+  });
+
+  if (searchItemsElement.hasChildNodes() === false && results.length === 0) {
+    const heading = document.createElement('h4');
+    heading.innerText = `sory, no find anyting like "${searchQuery}"`;
+    heading.setAttribute("id", "notFound");
+    searchItemsElement.appendChild(heading);
+  } else {
+    if (document.getElementById('notFound')) {
+      document.getElementById('notFound').remove();
     }
   }
 }
@@ -143,30 +144,32 @@ function search2(key) {
   }
 }
 
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
   search("load");
 });
 
-var focused = false
+let focused = false
 
-document.getElementById("searchBox").addEventListener("onfocus", function() {
+// yo bro what idiot wrote this code- oh nvm that was me my bad
+
+searchBoxElement.addEventListener("onfocus", function() {
   document.getElementById('searchDiv').style.width = "20vh";
   focused = true;
 });
 
-document.getElementById("searchBox").addEventListener("onfocusout", function() {
+searchBoxElement.addEventListener("onfocusout", function() {
   document.getElementById('searchDiv').style.width = "20vh";
   focused = false;
 });
 
-document.getElementById("search").addEventListener("mouseover", function() {
+searchBoxElement.addEventListener("mouseover", function() {
   document.getElementById('searchDiv').style.width = "20vh";
 });
 
-document.getElementById("search").addEventListener("mouseout", function() {
+searchBoxElement.addEventListener("mouseout", function() {
   if (focused === true) {
     document.getElementById('searchDiv').style.width = "20vh";
-  } else if (!document.getElementById("searchBox").hasFocus() && document.getElementById("searchBox").value === "") {
+  } else if (!searchBoxElement.hasFocus() && searchBoxElement.value === "") {
     document.getElementById('searchDiv').style.width = "2.5vh";
   }
 });

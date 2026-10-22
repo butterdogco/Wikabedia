@@ -45,12 +45,12 @@ function isInputValid(input) {
 
 function getValues() {
     const inputs = [
-            articleEmail.value, articleWriter.value, // Author info
-            articleCardTitle.value, articleCardDesc.value, // Card
-            uploadedImage, // Image Base64
-            articleTitle.value, // Main title
-            articleText.value // Main text
-        ]
+        articleEmail.value, articleWriter.value, // Author info
+        articleCardTitle.value, articleCardDesc.value, // Card
+        uploadedImage, // Image Base64
+        articleTitle.value, // Main title
+        articleText.value // Main text
+    ];
 
     if (inputs.some(input => !isInputValid(input))) {
         alert("Please fill in all required fields. 😭😭😭");

@@ -62,7 +62,7 @@ function createTopButtons() {
   
   const searchImg = document.createElement('img');
   searchImg.setAttribute('src', '../img/search.png');
-  searchImg.setAttribute('onclick', 'search("page2");');
+  searchImg.setAttribute('onclick', 'search("page2");'); // wtf
   
   const searchInp = document.createElement('input');
   searchInp.setAttribute('type', 'text');

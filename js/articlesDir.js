@@ -117,8 +117,14 @@ let data = [
   }
 ];
 
+let sheetDataCache = null;
+
 // Send a POST request to the server to get the data from the Google Sheet, and return the data
 async function getSheetData() {
+  if (sheetDataCache !== null) {
+    return sheetDataCache;
+  }
+
   const url = "https://wikabedia-backend.fly.dev/get";
   const options = {
     method: "POST",
@@ -132,7 +138,13 @@ async function getSheetData() {
 
   const response = await fetch(url, options);
   const sheetData = await response.json();
-  return sheetData.data;
+  const data = sheetData.data;
+
+  if (sheetDataCache === null) {
+    sheetDataCache = data;
+  }
+
+  return data;
 }
 
 let done = false;
@@ -147,15 +159,15 @@ async function getData() {
 
 function formatData(dat) {
   const formattedData = [];
-  var articleCount = 0;
+  let articleCount = 0;
 
   for (let i = 1; i < dat.length; i++) {
     const response = dat[i];
     const responseNumber = i + 1; // add 1 to ignore header
-    var imageURL = "img/wikabedia%20icon.png";
+    let imageURL = "img/wikabedia%20icon.png";
 
     if (response) {
-      var image = response[5] || imageURL;
+      let image = response[5] || imageURL;
       if (image.includes("https://")) {
         // is a web url
         if (image.includes("drive.google.com")) {
@@ -191,7 +203,8 @@ function formatData(dat) {
         link: `Articles/article.html?article=${responseNumber}`,
         place: "items",
         tags: response[2] + " " + response[1], // Column B, & Column C
-        approved: response[8]
+        approved: response[8],
+        removalReason: response[9]
       };
 
       if (item.approved != 'no') {
@@ -214,3 +227,4 @@ getData();
 // G = articleTitle
 // H = mainText
 // I = appropriate or not
+// J = removal reason

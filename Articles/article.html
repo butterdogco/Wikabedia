@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">article - wikabedia</title>
   <link rel="apple-touch-icon" sizes="256x256" href="../img/wikabedia.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,7 +42,7 @@
   </div>
 
   <footer>
-    <a class="not-a-button">copyirigt wikabedia 2025</a>
+    <a class="not-a-button">copyirigt wikabedia 2026</a>
     <a href="../creator.html">maek an article 4 FRE!</a>
     <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
   </footer>
@@ -91,6 +93,7 @@
       "G", // articleTitle
       "H", // mainText
       "I", // appropriate or not
+      "J", // reason for removal
     ]
 
     function processArticleText(text) {
@@ -102,30 +105,32 @@
         const data = await getSheetData();
         let val = data ? data[articleNum - 1][columns.indexOf(column)] : undefined;
 
+        const element = document.getElementById(id);
+
         if (mode === "image") {
           try {
           const linkPattern = /^https:\/\/drive\.google\.com\/open\?id=.*/;
           if (linkPattern.test(val)) {
             const imageId = val.replace('https://drive.google.com/open?id=', '');
             const newImageUrl = `https://drive.google.com/thumbnail?id=${imageId}`;
-            document.getElementById(id).src = newImageUrl;
+            element.src = newImageUrl;
           } else {
-            document.getElementById(id).src = val;
+            element.src = val;
           }
           } catch (err) {
           console.error(err);
           }
         } else if (mode === "title") {
-          document.getElementById(id).innerHTML = val === undefined ? "tis article no exist i tink" : val;
+          element.innerHTML = val === undefined ? "tis article no exist i tink" : val;
         } else if (mode === "text") {
           _backupArticleText = val;
-          document.getElementById(id).innerHTML = val === undefined ? "i forgor the text" : processArticleText(val);
+          element.innerHTML = val === undefined ? "i forgor the text" : processArticleText(val);
         } else if (mode === "writer") {
-          document.getElementById(id).innerHTML = val === undefined ? "article by your mother" : `article by ${val}`;
+          element.innerHTML = val === undefined ? "article by your mother" : `article by ${val}`;
         } else if (mode === "pageTitle") {
           document.title = val === undefined ? "nothing - wikabedia" : `${val} - wikabedia`;
         } else if (mode === "dateMade") {
-          document.getElementById(id).innerHTML = val === undefined ? 'created tomorrow' : `created ${val}`;
+          element.innerHTML = val === undefined ? 'created tomorrow' : `created ${val}`;
         }
 
         return val;
@@ -137,9 +142,10 @@
 
     const approved = sheetData("I", "", "approved");
     if (approved === "no") {
+      alert(`this article has been removed by a moderator for the following reason: ${sheetData("J", "", "reason")}`);
       window.location.href = "../Articles/article.html?article=1";
-      alert("this article has been removed by a moderator");
     } else {
+      // what the actual hell is this
       sheetData("G", "articleTitle", "title");
       sheetData("H", "articleText", "text");
       sheetData("F", "articleImg", "image");

@@ -149,7 +149,8 @@ hr {
     transition-property: background-color, opacity;
   }
 
-  button:hover, button:focus {
+  button:hover,
+  button:focus {
     background-color: var(--background2);
     opacity: 1;
   }
