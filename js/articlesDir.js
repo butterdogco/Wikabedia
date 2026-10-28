@@ -146,11 +146,25 @@ async function getSheetData() {
 }
 
 let done = false;
+let attempt = 0;
 async function getData() {
   if (!done) {
-    const dat = await getSheetData();
-    data.push(...formatData(dat));
-    done = true;
+    try {
+      const dat = await getSheetData();
+      data.push(...formatData(dat));
+      done = true;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      if (attempt < 3) {
+        attempt++;
+        console.log(`Retrying... Attempt ${attempt}`);
+        setTimeout(getData, 1000); // Retry after 1 second
+      } else {
+        // alert('Failed to fetch data after 3 attempts. Please check your internet connection or try again later. Only built-in articles will be displayed.');
+        console.error("Failed to fetch data after 3 attempts.");
+        done = true; // Stop retrying after 3 attempts
+      }
+    }
   }
   return data;
 }

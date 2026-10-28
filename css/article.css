@@ -91,6 +91,32 @@ hr {
   color: var(--text1);
   z-index: 1;
 
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-top: 1rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+  }
+
   a {
     color: var(--textlink1);
   }
