@@ -1,50 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>formatting - wikabedia</title>
-    <link rel="shortcut icon" href="../img/wikabedia%20icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/article.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <div class="logoDiv" onclick="site('../')">
-      <img src="../img/back.png">
-    </div>
-    <h1 class="logoText">wikabedia</h1>
-    <br>
-    <div class="article">
-      <div class="articleImage">
-        <img src="../img/formatting.png">
-      </div>
-      <h1 class="articleTitle">formatting</h1>
-      <p class="articleText" id="articleText" style="transform: translateX(-50%); left: 50%;">
-        <b style="font-size: 25px;">how do make websiet link</b><br>
-        1. get link<br>
-        2. tink of link name<br>
-        3. do tis ting: <b style="font-weight: normal;color: var(--textlink1);">(link text)[website]</b><br>
-        4. congrat finis insruction tutorial!!!<br>
-        exmample: hi my websiet <a href="https://b-dog.co">(here)[https://b-dog.co]</a>.<br>
-        <b style="font-size: 25px;">waht da article link how do</b><br>
-        1. get article numer and rember it (in wikabedia link)<br>
-        2. tink of link name<br>
-        3. do tis ting: <b style="font-weight: normal;color: var(--textlink1);">(link text)[Article/article number]</b><br>
-        4. finihsed leson todey!!!!<br>
-        exmample: hi guy my <a href="../Articles/article.html?article=114">(artical)[Article/114]</a> its's cool trus me<br>
-      </p>
-      <p class="articleWriter">article by keegan</p>
-    </div>
-    <hr>
-    <h2 class="recomend" onclick="addCard('no don click me','why did you click that','../img/wikabedia.png','#','recomend');">recomend articles</h2>
-    <div class="items" id="recomend"></div>
-    
-        <script src="../js/articlesDir.js?v=1"></script>
-    <script src="../js/theme.js"></script>
-    <script src="../js/recomend.js"></script>
-  </body>
-</html>
+---
+layout: article
+title: formatting
+image: /img/formatting.png
+writer: keegan
+creationDate: at some point
+---
+<div class="articleText">
+  <h3 style="font-size: 25px;">how do make websiet link</h3>
+  <ol>
+    <li>get link</li>
+    <li>tink of link name</li>
+    <li>do tis ting: <b style="font-weight: normal;color: var(--textlink1);">(link text)[website]</b></li>
+    <li>congrat finis insruction tutorial!!!</li>
+  </ol>
+  <h4>examlpes</h4>
+  <p>raw: hi my websiet (here)[https://butterdogco.com].</p>
+  <p>output: hi my websiet <a href="https://butterdogco.com">here</a>.</p>
+  
+  <h3 style="font-size: 25px;">waht da article link how do</h3>
+  <ol>
+    <li>get article numer and rember it (in wikabedia link)</li>
+    <li>tink of link name</li>
+    <li>do tis ting: <b style="font-weight: normal;color: var(--textlink1);">(link text)[Article/article number]</b></li>
+    <li>finihsed leson todey!!!!</li>
+  </ol>
+  <h4>exmamples</h4>
+  <p>raw: hi guy my (artical)[Article/114] its's cool trus me</p>
+  <p>output: hi guy my <a href="/Articles/article.html?article=114">artical</a> its's cool trus me</p>
+</div>

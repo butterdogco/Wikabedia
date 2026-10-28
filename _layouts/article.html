@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/css/article.css' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="256x256" href="{{ '/img/wikabedia.ico' | relative_url }}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="{{ '/img/wikabedia%20icon.png' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="a wikabedia artical">
+</head>
+
+<body>
+  {% include header.html %}
+  <div class="topButtons">
+    <div class="search">
+      <img src="{{ '/img/search.png' | relative_url }}">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
+    </div>
+    <div class="create" onclick="site('creator.html')">
+      <img src="{{ '/img/create.png' | relative_url }}">
+      <p>create article</p>
+    </div>
+  </div>
+  <script src="{{ '/js/articlesDir.js' | relative_url }}"></script>
+  <script src="{{ '/js/main.js' | relative_url }}"></script>
+  <script src="{{ '/js/theme.js' | relative_url }}"></script>
+  <script src="{{ '/js/autocomplete.js' | relative_url }}"></script>
+  <script src="{{ '/js/recomend.js' | relative_url }}"></script>
+  <div class="article">
+    <div class="articleImage">
+      <img src="{{ page.image | relative_url }}">
+    </div>
+    <h2 class="articleTitle">{{ page.title }}</h2>
+    {{ content }}
+    <p class="articleWriter">article by {{ page.writer }}</p>
+    <p class="articleWriter">created {{ page.creationDate }}</p>
+  </div>
+  <h2 class="recomend">recomend articles</h2>
+  <div class="items" id="recomend"></div>
+  {% include footer.html %}
+</body>
+
+</html>
