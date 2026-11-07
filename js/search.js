@@ -55,6 +55,13 @@ function search(query) {
 
   exactMatches.forEach(addSearchItem);
   partialMatches.forEach(addSearchItem);
+
+  if (exactMatches.size === 0 && partialMatches.size === 0) {
+    const heading = document.createElement('h4');
+    heading.innerText = `sory, no find anyting like "${query}"`;
+    heading.id = 'notFound';
+    searchItemsElement.appendChild(heading);
+  }
 }
 
 async function init() {
