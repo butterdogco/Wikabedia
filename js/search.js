@@ -31,7 +31,7 @@ function search(query) {
 
   query = query.trim().toLowerCase();
   let queryWords = query.split(' ');
-  queryWords.filter(word => !searchIgnoredWords.includes(word));
+  queryWords = queryWords.filter(word => !searchIgnoredWords.includes(word));
 
   data.forEach(item => {
     if (!item.title || !item.desc || !item.tags) return;
