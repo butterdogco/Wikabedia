@@ -197,7 +197,7 @@ body {
   cursor: pointer;
   box-shadow: var(--shadow1);
   text-decoration: none;
-  animation: item 0.5s ease;
+  /* animation: item 0.5s ease; */
 
   img {
     width: 100%;
@@ -268,6 +268,7 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
+  z-index: 1;
 
   .button {
     padding: 20px;

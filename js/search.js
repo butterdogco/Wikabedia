@@ -1,98 +1,100 @@
+const loadDiv = document.getElementById('loadDiv');
 const notFoundElement = document.getElementById('notFound');
 // nice element names they're really clear and descriptive
 const searchBoxContainerElement = document.getElementById('search');
 const searchDivElement = document.getElementById('searchDiv');
 const searchItemsElement = document.getElementById('searchItems');
-const searchBoxElement = document.getElementById('searchBox');
-const searchBox2Element = document.getElementById('searchBox2');
-const searchIgnoredWords = ['how', 'the', 'to', 'do'];
+const searchFormElements = document.querySelectorAll('.searchForm');
+const searchInputElements = document.querySelectorAll('.searchInput');
+const searchIgnoredWords = ['how', 'the', 'to', 'do', 'a'];
 
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
+const searchKeyPressSubmitTimeout = 300;
+
+function addSearchItem(item) {
+  addCard(item.title, item.desc, item.image, item.link, searchItemsElement);
 }
 
-function site(url) {
-  document.body.style.opacity = 0;
-  setTimeout(() => {
-    window.location.href = url;
-  }, 250);
-}
+function search(query) {
+  searchItemsElement.innerHTML = '';
 
-async function search(mode) {
-  searchItemsElement.innerHTML = "";
-
-  // Get the URL of the current page
   const url = new URL(window.location);
-
-  let searchQuery = '';
-  if (mode === "load") {
-    searchQuery = url.searchParams.get("query");
-  } else if (mode === "page") {
-    searchQuery = searchBoxElement.value;
-  } else if (mode === "page2") {
-    searchQuery = searchBox2Element.value;
-  }
-
-  url.searchParams.set("query", searchQuery);
+  url.searchParams.set('query', query);
   window.history.pushState({}, '', url);
 
-  searchBox2Element.value = searchQuery;
-
-  let exactMatches = [];
-  let partialMatches = [];
-
-  // Use the search query to perform a search or any other operations
-  // For example, search through a list of items
-  while (!done) {
-    await new Promise(resolve => setTimeout(resolve, 150));
+  // Ensure inputs are consistent
+  for (const searchInput of searchInputElements) {
+    searchInput.value = query;
   }
-  
+
+  const exactMatches = new Set();
+  const partialMatches = new Set();
+
+  query = query.trim().toLowerCase();
+  let queryWords = query.split(' ');
+  queryWords.filter(word => !searchIgnoredWords.includes(word));
+
   data.forEach(item => {
-    const words = searchQuery.split(' ');
-    let found = false;
-    
-    searchIgnoredWords.forEach((element) => {
-      if (!found && item.title && item.desc && item.tags) {
-        if (searchQuery === (element) || searchQuery === "how to") {
-          found = true;
-          match = words.some(word => (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
-        } else {
-          match = words.some(word => !searchIgnoredWords.includes(word.toLowerCase()) && (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
-        }
-      }
-    });
-    
-    if (match) {
-      if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.desc.toLowerCase().includes(searchQuery.toLowerCase()) || item.tags.toLowerCase().includes(searchQuery.toLowerCase())) {
-        exactMatches.push(item);
-      } else {
-        partialMatches.push(item);
+    if (!item.title || !item.desc || !item.tags) return;
+
+    const title = item.title.toLowerCase();
+    const desc = item.desc.toLowerCase();
+    const tags = item.tags.toLowerCase();
+
+    if (title === query || desc === query) {
+      exactMatches.add(item);
+      return;
+    }
+
+    for (const word of queryWords) {
+      if (title.includes(word) || desc.includes(word) || tags.includes(word)) {
+        partialMatches.add(item);
+        break;
       }
     }
   });
 
-  // Concatenate the arrays and load the results into the searchItemsElement
-  const results = exactMatches.concat(partialMatches);
-  results.forEach(item => {
-    addCard(item.title, item.desc, item.image, item.link, "searchItems");
-  });
-
-  if (searchItemsElement.hasChildNodes() === false && results.length === 0) {
-    const heading = document.createElement('h4');
-    heading.innerText = `sory, no find anyting like "${searchQuery}"`;
-    heading.setAttribute("id", "notFound");
-    searchItemsElement.appendChild(heading);
-  } else {
-    if (document.getElementById('notFound')) {
-      document.getElementById('notFound').remove();
-    }
-  }
+  exactMatches.forEach(addSearchItem);
+  partialMatches.forEach(addSearchItem);
 }
 
-window.addEventListener("load", () => {
-  search("load");
-});
+async function init() {
+  searchFormElements.forEach(element => element.addEventListener('submit', (event) => {
+    event.preventDefault();
+    search(event.target.elements[0].value);
+  }));
+
+  searchInputElements.forEach(element => {
+    let inputTimeout;
+
+    element.addEventListener('keypress', () => {
+      if (inputTimeout) {
+        clearTimeout(inputTimeout);
+        inputTimeout = null;
+      }
+
+      inputTimeout = setTimeout(() => search(element.value), searchKeyPressSubmitTimeout);
+    });
+  });
+
+  await new Promise(resolve => {
+    const check = () => {
+      if (done) {
+        resolve();
+      } else {
+        setTimeout(check, 200);
+      }
+    };
+    check();
+  });
+
+  const url = new URL(window.location);
+  const searchQueryParam = url.searchParams.get('query');
+  if (searchQueryParam && searchQueryParam.trim() !== '') {
+    search(searchQueryParam);
+  }
+
+  loadDiv.classList.add('hide');
+  setTimeout(() => loadDiv.remove(), 200);
+}
+
+init();

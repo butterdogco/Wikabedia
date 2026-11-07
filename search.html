@@ -1,70 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>saerch - wikabedia</title>
-    <link rel="shortcut icon" href="img/wikabedia.ico">
-    <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/search.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="find teh wikabedia artical">
-  </head>
-  <body>
-    <div class="logoDiv" onclick="site('../')">
-      <img src="img/back.png">
-    </div>
-    <h1 class="logoText">wikabedia</h1>
-    <br>
-    <div class="topButtons">
+
+<head>
+  <meta charset="UTF-8">
+  <title>saerch - wikabedia</title>
+  <link rel="shortcut icon" href="img/wikabedia.ico">
+  <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/search.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="find teh wikabedia artical">
+</head>
+
+<body>
+  <div class="loading" id="loadDiv">
+    <img src="/img/wikabedia.png" class="loading-icon">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <a class="logoDiv" href="/">
+    <img src="/img/back.png">
+  </a>
+
+  <br>
+  <div class="topButtons">
     <div class="button search">
       <img src="/img/search.png">
-      <input type="text" placeholder="saerch for somting" id="searchBox">
+      <input type="text" placeholder="saerch for somting" class="searchInput">
     </div>
     <a class="button create" href="/creator.html">
       <img src="/img/create.png">
       <p>create article</p>
     </a>
   </div>
-    <div class="search2">
-      <img src="img/search.png" class="icon" onclick="search('page2');">
-      <input type="text" placeholder="saerch for somting" id="searchBox2" onkeydown="search('page2')">
-    </div>
-    <div class="items searchItems" id="searchItems">
-      <img id="loadingImage" src="img/loading.gif">
-    </div>
-    <hr>
-    <h2 class="recomend" onclick="addCard('no don click me','why did you click that','../img/wikabedia.png',null,'recomend');">recomend articles</h2>
-    <div class="cardScroller" id="recommendedArticlesContainer"></div>
-    
-    <div class="loading" id="loadDiv">
-      <img src="img/wikabedia.png" class="loading-icon">
-      <div class="loading-spinner"></div>
-    </div>
-      
-    <script src="js/main.js?v=1"></script>
-    <script src="js/articlesDir.js?v=1"></script>
-    <script src="js/search.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/autocomplete.js"></script>
-    <script>
-      const loadDiv = document.getElementById('loadDiv');
-      function checkLoad() {
-        if (done === true) {
-          loadDiv.style.opacity = 0;
-          window.setTimeout(() => {
-            loadDiv.remove();
-          }, 200);
-        } else {
-          setTimeout(checkLoad, 150);
-        }
-      }
-      
-      setTimeout(checkLoad, 150);
-    </script>
-    <script src="js/recomend.js"></script>
-  </body>
+
+  <form class="searchForm inlineSearchForm">
+    <input type="text" placeholder="saerch for somting" class="searchInput">
+    <button class="button" type="submit" title="Search">
+      <img src="img/search.png" class="icon">
+    </button>
+  </form>
+  <div class="cardScroller searchItems" id="searchItems">
+    <img id="loadingImage" src="img/loading.gif">
+  </div>
+  <hr>
+
+  <h2 class="recomend">recomend articles</h2>
+  <div class="cardScroller" id="recommendedArticlesContainer"></div>
+
+  <script src="js/main.js?v=1"></script>
+  <script src="js/articlesDir.js?v=1"></script>
+  <script src="js/search.js"></script>
+  <script src="js/theme.js"></script>
+  <!-- <script src="js/autocomplete.js"></script> -->
+  <script src="js/recomend.js"></script>
+</body>
+
 </html>
