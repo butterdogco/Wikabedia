@@ -2,7 +2,7 @@ const isSearchPage = window.location.pathname.startsWith('/search');
 
 if (!isSearchPage) {
   window.search = (query) => {
-    query = encodeURIComponent(query.trim());
+  query = query.trim();
     
     const pageUrl = new URL(window.location.href);
     pageUrl.pathname = 'search';
