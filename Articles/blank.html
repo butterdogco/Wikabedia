@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>articleName - wikabedia</title>
-    <link rel="shortcut icon" href="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/article.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <div class="logoDiv" onclick="site('../')">
-      <img src="../img/back.png">
-    </div>
-    <h1 class="logoText">wikabedia</h1>
-    <br>
-    <div class="article">
-      <div class="articleImage">
-        <img src="../img/wow">
-      </div>
-      <h1 class="articleTitle">article</h1>
-      <p class="articleText">stuff</p>
-      <p class="articleWriter">article by yourMom</p>
-    </div>
-    <hr>
-    <h2 class="recomend" onclick="addCard('no don click me','why did you click that','../img/wikabedia.png','#','recomend');">recomend articles</h2>
-    <div class="items" id="recomend">
-      
-      <!--
-      <div class="item" id="item" onclick="site('https://google.com')">
-        <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
-        <h3>Name</h3>
-        <p>Short description</p>
-      </div>
-      -->
-      
-    </div>
-      
-        <script src="../js/articlesDir.js?v=1"></script>
 
-    <script src="../js/recomend.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>articleName - wikabedia</title>
+  <link rel="shortcut icon" href="/img/wikabedia.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/article.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <a class="logoDiv" href="/">
+    <img src="../img/back.png">
+  </a>
+
+  <div class="topButtons">
+    <div class="button search">
+      <img src="/img/search.png">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
+    </div>
+    <a class="button create" href="/creator.html">
+      <img src="/img/create.png">
+      <p>create article</p>
+    </a>
+  </div>
+
+  <div class="article">
+    <div class="articleImage">
+      <img src="../img/wow">
+    </div>
+    <h1 class="articleTitle">article</h1>
+    <p class="articleText">stuff</p>
+    <p class="articleWriter">article by yourMom</p>
+  </div>
+
+  <hr>
+  <h2 class="recommendedArticlesHeading">recomend articles</h2>
+  <div class="cardScroller" id="recommendedArticlesContainer"></div>
+
+  <footer>
+    <span>copyirigt wikabedia 2026</span>
+    <a href="/creator.html">maek an article 4 FRE!</a>
+    <button onclick="theme()" id="themeToggle">dark moed</button>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/articlesDir.js?v=1"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/recomend.js"></script>
+</body>
+
 </html>

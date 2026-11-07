@@ -1,9 +1,18 @@
-async function createDefaults() {
-  try {
-    while (!done) {
-      await new Promise(resolve => setTimeout(resolve, 150)); // Wait
-    }
+const recommendedArticlesContainer = document.getElementById('recommendedArticlesContainer');
 
+async function createDefaults() {
+  await new Promise(resolve => {
+    const check = () => {
+      if (done) {
+        resolve();
+      } else {
+        setTimeout(check, 200);
+      }
+    };
+    check();
+  });
+
+  try {
     // Shuffle the data
     const shuffledData = data.slice();
     for (let i = shuffledData.length - 1; i > 0; i--) {
@@ -23,7 +32,7 @@ async function createDefaults() {
         item.desc = "no descwiption";
       }
       
-      addCard(item.title, item.desc, item.image, item.link, "recomend");
+      addCard(item.title, item.desc, item.image, item.link, recommendedArticlesContainer);
     });
   } catch (error) {
     console.error(error);

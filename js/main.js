@@ -1,23 +1,5 @@
 const isSearchPage = window.location.pathname.startsWith('/search');
 
-/*
-function search() {
-  url = "../search.html?search=" + document.getElementById('searchBox').value;
-  if (url !== undefined) {
-    document.body.style.opacity = 0;
-    setTimeout(function() {
-      window.location.href = url;
-    }, 250);
-  }
-}
-
-function search2(key) {
-  if (event.key === "Enter") {
-    search("page2");
-  }
-}
-*/
-
 if (!isSearchPage) {
   window.search = (query) => {
     query = encodeURIComponent(query.trim());
@@ -37,17 +19,9 @@ if (!isSearchPage) {
   });
 }
 
-function addCard(title, description, image, url, parent) {
-  if (!parent) parent = 'items';
-
-  const parentElement = document.getElementById(parent);
-  if (!parentElement) {
-    console.error('Attempted to create card with non-existent parent:', parent);
-    return;
-  }
-
+function newCard(title, description, image, url) {
   const cardElement = document.createElement('a');
-  cardElement.classList.add('item');
+  cardElement.classList.add('cardButton');
   cardElement.href = url;
   
   const imageElement = document.createElement('img');
@@ -63,5 +37,14 @@ function addCard(title, description, image, url, parent) {
   descriptionElement.innerText = description.slice(0, 64);
   cardElement.append(descriptionElement);
 
-  parentElement.append(cardElement);
+  return cardElement;
+}
+
+function addCard(title, description, image, url, parent) {
+  if (!parent) {
+    console.error('Attempted to create card without parent');
+    return;
+  }
+
+  parent.append(newCard(title, description, image, url));
 }

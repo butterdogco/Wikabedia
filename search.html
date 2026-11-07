@@ -20,15 +20,15 @@
     <h1 class="logoText">wikabedia</h1>
     <br>
     <div class="topButtons">
-      <div class="search">
-        <img src="img/search.png" onclick="search()">
-        <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
-      </div>
-      <div class="create" onclick="site('creator.html')">
-        <img src="img/create.png">
-        <p>create article</p>
-      </div>
+    <div class="button search">
+      <img src="/img/search.png">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
     </div>
+    <a class="button create" href="/creator.html">
+      <img src="/img/create.png">
+      <p>create article</p>
+    </a>
+  </div>
     <div class="search2">
       <img src="img/search.png" class="icon" onclick="search('page2');">
       <input type="text" placeholder="saerch for somting" id="searchBox2" onkeydown="search('page2')">
@@ -38,7 +38,7 @@
     </div>
     <hr>
     <h2 class="recomend" onclick="addCard('no don click me','why did you click that','../img/wikabedia.png',null,'recomend');">recomend articles</h2>
-    <div class="items" id="recomend"></div>
+    <div class="cardScroller" id="recommendedArticlesContainer"></div>
     
     <div class="loading" id="loadDiv">
       <img src="img/wikabedia.png" class="loading-icon">

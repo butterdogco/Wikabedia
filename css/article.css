@@ -4,22 +4,12 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
-  background: var(--background1);
 }
 
 h1 {
   font-size: 4vh;
-  cursor: default;
   font-weight: 400px;
-  cursor: default;
   color: var(--text1);
-}
-
-.logoText {
-  margin-top: -7vh;
-  font-size: 4vh;
-  margin-left: 12vh;
-  display: none;
 }
 
 h2 {
@@ -27,21 +17,13 @@ h2 {
   margin-top: 5vh;
   font-size: 3vh;
   font-weight: bold;
-  cursor: default;
   color: var(--text1);
 }
-
 
 hr {
   border: 1px solid var(--background2);
   width: 100vw;
   height: 0vh;
-}
-
-.logoDesc,
-.logoText,
-.recomend {
-  cursor: default;
 }
 
 .logoDesc {
@@ -58,6 +40,7 @@ hr {
   position: absolute;
   display: inline-block;
   top: 0;
+  z-index: -1;
 }
 
 .articleImage img {
@@ -162,7 +145,6 @@ hr {
 
 pre {
   font-family: inherit;
-  cursor: default;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
@@ -170,12 +152,7 @@ pre {
   word-wrap: break-word;
 }
 
-p {
-  cursor: default;
-}
-
-.articleWriter {
-  cursor: default;
+.articleInfo {
   color: rgb(160, 160, 160);
   text-align: center;
 }
