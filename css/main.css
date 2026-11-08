@@ -4,34 +4,33 @@
 /* Variables */
 :root {
   /* Light Versions */
-  --backgroundlight1: white;
-  --backgroundlight2: rgb(240, 240, 240);
-  --backgroundlight3: rgb(230, 230, 230);
+  --backgroundlight1: #fff;
+  --backgroundlight2: #d6d6d6;
+  --backgroundlight3: #c9c9c9;
   --backgroundlight4: #f3f3f3;
   --imagefilterlight: invert(0%);
   --hometopgradientlight: rgba(193, 192, 192, 0.6);
   --spinnercolorlight1: rgba(0, 0, 0, 0.5);
 
   /* Dark Versions */
-  --backgrounddark1: rgb(20, 20, 40);
-  --backgrounddark2: rgb(40, 40, 50);
-  --backgrounddark3: rgb(140, 140, 140);
+  --backgrounddark1: #141428;
+  --backgrounddark2: #282832;
+  --backgrounddark3: #8c8c8c;
   --backgrounddark4: #292929;
-  --logobackground: white;
+  --logobackground: #fff;
   --imagefilterdark: invert(100%);
-  --hometopgradientdark: rgba(40, 40, 50, 0.6);
-  --spinnercolordark1: rgba(0, 0, 30, 0.5);
+  --hometopgradientdark: #28283299;
+  --spinnercolordark1: #00001e80;
 
-  --textlight1: black;
-  --textlight3: rgb(110, 110, 110);
-  --textdark1: white;
-  --textdark3: rgb(160, 160, 160);
+  --textlight1: #000;
+  --textlight2: #666565;
+  --textdark1: #fff;
+  --textdark2: #a0a0a0;
 
   --background1: var(--backgroundlight1);
-  --background2: rgb(240, 240, 240);
+  --background2: var(--backgroundlight2);
   --background3: var(--backgroundlight3);
-  --background4: #f3f3f3;
-  --background5: #f3f3f3;
+  --background4: var(--backgroundlight4);
 
   --spinnercolor1: rgba(0, 0, 0, 0.5);
 
@@ -40,8 +39,7 @@
   --hometopgradient: var(--hometopgradientlight);
 
   --text1: var(--textlight1);
-  --text2: rgb(160, 160, 160);
-  --text3: var(--textlight3);
+  --text2: var(--textlight2);
 
   --textlink1: rgb(120, 120, 240);
 
@@ -51,55 +49,6 @@
 }
 
 /* Animations */
-@keyframes item {
-  0% {
-    transform: translateX(-20%);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn2 {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn3 {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
 
 @keyframes spin {
   0% {
@@ -123,9 +72,9 @@ html {
 
 body {
   background: var(--background1);
+  color: var(--text1);
   font-family: 'Dm Sans', sans-serif;
   margin: 0;
-  animation: fadeIn 0.2s ease;
   max-width: 100vw;
   min-width: 100vw;
   overflow-x: hidden;
@@ -170,6 +119,14 @@ body {
   top: calc(50% - 6.75vh);
   left: calc(50% - 6.75vh);
   transform: translate(-50%, -50%);
+}
+
+hr {
+  border: 1px solid var(--background2);
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  text-shadow: 0 0 4px var(--shadow3);
 }
 
 .cardScroller {
@@ -218,7 +175,7 @@ body {
 
   p {
     position: relative;
-    color: var(--text3);
+    color: var(--text2);
     margin-top: -1.8vh;
     cursor: pointer;
     font-size: 1.5vh;
@@ -375,17 +332,57 @@ body {
 }
 
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  padding-bottom: 8px;
   text-align: center;
-  margin-top: 2vh;
-  padding-bottom: 2vh;
+
+  .notice {
+    width: 100%;
+    color: var(--text2);
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 200px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    &.left {
+      text-align: right;
+    }
+
+    &.right {
+      text-align: left;
+    }
+
+    .heading {
+      color: var(--text2);
+    }
+  }
+
+  .seperator {
+    width: 2px;
+    background: var(--background2);
+  }
 
   span {
     color: var(--text1);
   }
 
-  a,
+  a {
+    color: var(--textlink1)
+  }
+
   button {
-    padding: 8px;
+    padding: 2px 8px;
     height: 100%;
     border: none;
     background: var(--background2);

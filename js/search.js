@@ -3,65 +3,124 @@ const notFoundElement = document.getElementById('notFound');
 // nice element names they're really clear and descriptive
 const searchBoxContainerElement = document.getElementById('search');
 const searchDivElement = document.getElementById('searchDiv');
+
+const noSearchQueryNotice = document.getElementById('noSearchQueryNotice');
+const noExactResultsNotice = document.getElementById('noExactResultsNotice');
 const searchItemsElement = document.getElementById('searchItems');
+
+const partialMatchContainer = document.getElementById('partialMatchContainer');
+const searchPartialMatchItemsElement = document.getElementById('searchPartialMatchItems');
+
 const searchFormElements = document.querySelectorAll('.searchForm');
 const searchInputElements = document.querySelectorAll('.searchInput');
-const searchIgnoredWords = ['how', 'the', 'to', 'do', 'a'];
 
+const exactMatchMinScore = 5;
+const searchIgnoredWords = ['how', 'the', 'to', 'do', 'a'];
+const searchIgnoredCharactersRegex = /[^\p{L}\d\s]/gu;
+const multipleSpacesRegex = /\s\s+/g;
+const searchWordMinCharacters = 3;
 const searchKeyPressSubmitTimeout = 300;
 
-function addSearchItem(item) {
-  addCard(item.title, item.desc, item.image, item.link, searchItemsElement);
+function processString(string) {
+  return string.trim().toLowerCase().replace(searchIgnoredCharactersRegex, '').replace(multipleSpacesRegex, ' ');
 }
 
 function search(query) {
+  if (typeof(query) === 'string') query = processString(query);
+
+  const isEmptyQuery = query === '' || query === null;
+
   searchItemsElement.innerHTML = '';
+  searchPartialMatchItemsElement.innerHTML = '';
 
   const url = new URL(window.location);
-  url.searchParams.set('query', query);
+  if (isEmptyQuery) {
+    url.searchParams.delete('query');
+  } else {
+    url.searchParams.set('query', query);
+  }
   window.history.pushState({}, '', url);
 
   // Ensure inputs are consistent
   for (const searchInput of searchInputElements) {
-    searchInput.value = query;
+    searchInput.value = query || '';
   }
 
-  const exactMatches = new Set();
-  const partialMatches = new Set();
+  if (isEmptyQuery) {
+    noSearchQueryNotice.classList.remove('hidden');
+    partialMatchContainer.classList.add('hidden');
+    return;
+  } else {
+    noSearchQueryNotice.classList.add('hidden');
+  }
 
-  query = query.trim().toLowerCase();
-  let queryWords = query.split(' ');
-  queryWords = queryWords.filter(word => !searchIgnoredWords.includes(word));
+  let matches = [];
+  let areExactMatches = false;
+  let arePartialMatches = false;
 
-  data.forEach(item => {
+  let queryWords = query.split(' ').filter(word => !searchIgnoredWords.includes(word));
+
+  data.forEach((item, index) => {
     if (!item.title || !item.desc || !item.tags) return;
 
-    const title = item.title.toLowerCase();
-    const desc = item.desc.toLowerCase();
-    const tags = item.tags.toLowerCase();
+    const title = processString(item.title);
+    const desc = processString(item.desc);
+    const tags = processString(item.tags);
 
-    if (title === query || desc === query) {
-      exactMatches.add(item);
-      return;
-    }
+    let score = 0;
 
-    for (const word of queryWords) {
-      if (title.includes(word) || desc.includes(word) || tags.includes(word)) {
-        partialMatches.add(item);
-        break;
-      }
-    }
+    // Exact matches, large score increase
+    if (title === query) score += 10;
+    if (desc === query) score += 8;
+
+    // Individual word matches, decent score increase
+    title.split(' ').forEach(word => {
+      if (queryWords.includes(word)) score += 4;
+    });
+
+    desc.split(' ').forEach(word => {
+      if (queryWords.includes(word)) score += 2;
+    });
+
+    tags.split(' ').forEach(word => {
+      if (queryWords.includes(word)) score += 1;
+    });
+
+    // Partial matches, only if nothing else has been found
+    if (score === 0)
+      queryWords.forEach(word => {
+        if (word.length < searchWordMinCharacters) return;
+        
+        if (title.includes(word))
+          score += 0.5
+        else if (desc.includes(word))
+          score += 0.35
+        else if (tags.includes(word))
+          score + 0.2
+      });
+
+    if (score > 0) matches.push([score, index]);
   });
 
-  exactMatches.forEach(addSearchItem);
-  partialMatches.forEach(addSearchItem);
+  matches.sort((a, b) => b[0] - a[0]);
+  matches.forEach(([score, itemIndex]) => {
+    const item = data[itemIndex];
+    if (!item) {
+      console.warn('Invalid item index received during matches for each:', itemIndex);
+      return;
+    }
+    
+    const isPartialMatch = score < exactMatchMinScore || score % 1 !== 0; // Partial matches are not integers
+    addCard(item.title, item.desc, item.image, item.link, isPartialMatch ? searchPartialMatchItemsElement : searchItemsElement);
 
-  if (exactMatches.size === 0 && partialMatches.size === 0) {
-    const heading = document.createElement('h4');
-    heading.innerText = `sory, no find anyting like "${query}"`;
-    heading.id = 'notFound';
-    searchItemsElement.appendChild(heading);
-  }
+    if (!areExactMatches && !isPartialMatch)
+      areExactMatches = true;
+    else if (!arePartialMatches && isPartialMatch)
+      arePartialMatches = true;
+  });
+
+  noExactResultsNotice.classList.toggle('hidden', areExactMatches);
+  partialMatchContainer.classList.toggle('hidden', !arePartialMatches);
 }
 
 async function init() {
@@ -73,7 +132,7 @@ async function init() {
   searchInputElements.forEach(element => {
     let inputTimeout;
 
-    element.addEventListener('keypress', () => {
+    element.addEventListener('keydown', () => {
       if (inputTimeout) {
         clearTimeout(inputTimeout);
         inputTimeout = null;
@@ -96,9 +155,7 @@ async function init() {
 
   const url = new URL(window.location);
   const searchQueryParam = url.searchParams.get('query');
-  if (searchQueryParam && searchQueryParam.trim() !== '') {
-    search(searchQueryParam);
-  }
+  search(searchQueryParam);
 
   loadDiv.classList.add('hide');
   setTimeout(() => loadDiv.remove(), 200);

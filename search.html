@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>saerch - wikabedia</title>
-  <link rel="shortcut icon" href="img/wikabedia.ico">
-  <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
+  <link rel="shortcut icon" href="/img/wikabedia.ico">
+  <link rel="apple-touch-icon" sizes="256x256" href="/img/wikabedia icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="/css/search.css?v=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="find teh wikabedia artical">
 </head>
@@ -42,20 +42,49 @@
       <img src="img/search.png" class="icon">
     </button>
   </form>
-  <div class="cardScroller searchItems" id="searchItems">
-    <img id="loadingImage" src="img/loading.gif">
-  </div>
-  <hr>
 
+  <div class="resultContainer">
+    <h2>Results</h2>
+    <span class="notice" id="noSearchQueryNotice">maek a search to get started!</span>
+    <span class="notice hidden" id="noExactResultsNotice">no exact results found :(</span>
+    <div class="cardScroller" id="searchItems"></div>
+  </div>
+
+  <div class="resultContainer hidden" id="partialMatchContainer">
+    <hr>
+    <h2>Partial Matches</h2>
+    <span class="notice">probably not what you searched for but close enough</span>
+    <div class="cardScroller" id="searchPartialMatchItems"></div>
+  </div>
+
+  <hr>
   <h2 class="recomend">recomend articles</h2>
   <div class="cardScroller" id="recommendedArticlesContainer"></div>
 
-  <script src="js/main.js?v=1"></script>
-  <script src="js/articlesDir.js?v=1"></script>
+  <hr>
+  <footer>
+    <span class="notice">&copy; 2026 <a href="https://butterdogco.com">ButterDogCo</a></span>
+
+    <ul class="left">
+      <span class="heading">legal</span>
+      <li><a href="https://butterdogco.com/terms">terms AND conditions</a></li>
+      <li><a href="https://butterdogco.com/privacy">privacy poolicy</a></li>
+    </ul>
+
+    <div class="seperator"></div>
+    
+    <ul class="right">
+      <span class="heading">appearance</span>
+      <li><button class="themeToggle">dark mode 🤤</button></li>
+    </ul>
+  </footer>
+
+  <script src="js/main.js?v=2"></script>
+  <script src="js/articlesDir.js?v=2"></script>
   <script src="js/search.js"></script>
-  <script src="js/theme.js"></script>
+  <script src="js/theme.js?v=2"></script>
   <!-- <script src="js/autocomplete.js"></script> -->
-  <script src="js/recomend.js"></script>
+  <script src="js/recomend.js?v=2"></script>
 </body>
 
 </html>

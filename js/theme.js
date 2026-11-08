@@ -1,51 +1,53 @@
 const root = document.querySelector(":root");
-const themeToggleElement = document.getElementById("themeToggle");
-let currentTheme = "light";
+const themeStorageKey = 'theme';
+const themeToggleElements = document.querySelectorAll(".themeToggle");
+const legacyThemeValues = ['dark', 'light'];
+let darkModeActive = false;
 
-function theme(mode) {  
-  if (!mode && currentTheme == "light") {
-    mode = "dark";
-  } else if (!mode && currentTheme == "dark") {
-    mode = "light";
-  }
+function updateThemeToggleElements() {
+  themeToggleElements.forEach(element => element.innerText = darkModeActive ? 'light mode ☀️' : 'dark mode 🤤');
+}
 
-  if (mode === "dark") {
-    currentTheme = "dark";
+function updateTheme(useDarkMode=!darkModeActive, save=true) {  
+  darkModeActive = useDarkMode;
+
+  if (useDarkMode === true) {
     root.style.setProperty('--background1', 'var(--backgrounddark1)');
     root.style.setProperty('--background2', 'var(--backgrounddark2)');
     root.style.setProperty('--background3', 'var(--backgrounddark3)');
     root.style.setProperty('--background4', 'var(--backgrounddark4)');
     root.style.setProperty('--text1', 'var(--textdark1)');
-    root.style.setProperty('--text3', 'var(--textdark3)');
+    root.style.setProperty('--text2', 'var(--textdark2)');
     root.style.setProperty('--imagefilter', 'var(--imagefilterdark)');
     root.style.setProperty('--hometopgradient', 'var(--hometopgradientdark)');
     root.style.setProperty('--spinnercolor1', 'var(--spinnercolordark1)');
-    
-    if (themeToggleElement) {
-      themeToggleElement.innerText = themeToggleElement.innerText.replaceAll("dark", "light");
-    }
-  } else if (mode === "light") {
-    currentTheme = "light";
+  } else {
     root.style.setProperty('--background1', 'var(--backgroundlight1)');
     root.style.setProperty('--background2', 'var(--backgroundlight2)');
     root.style.setProperty('--background3', 'var(--backgroundlight3)');
     root.style.setProperty('--background4', 'var(--backgroundlight4)');
     root.style.setProperty('--text1', 'var(--textlight1)');
-    root.style.setProperty('--text3', 'var(--textlight3)');
+    root.style.setProperty('--text2', 'var(--textlight2)');
     root.style.setProperty('--imagefilter', 'var(--imagefilterlight)');
     root.style.setProperty('--hometopgradient', 'var(--hometopgradientlight)');
     root.style.setProperty('--spinnercolor1', 'var(--spinnercolorlight1)');
-    
-    if (themeToggleElement) {
-      themeToggleElement.innerText = themeToggleElement.innerText.replaceAll("light", "dark");
-    }
   }
   
-  localStorage.setItem("theme", currentTheme);
+  updateThemeToggleElements();
+
+  if (save === true) localStorage.setItem(themeStorageKey, darkModeActive);
 }
 
-if (localStorage.getItem("theme")) {
-  theme(localStorage.getItem("theme"));
+const savedTheme = localStorage.getItem(themeStorageKey);
+if (savedTheme !== null && savedTheme.trim() !== '') {
+  if (legacyThemeValues.some(v => v === savedTheme)) {
+    updateTheme(savedTheme === 'dark', false);
+  } else {
+    updateTheme(savedTheme === 'true', false);
+  }
 } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  theme("dark");
+  updateTheme(true, false);
 }
+
+themeToggleElements.forEach(element => element.addEventListener('click', () => updateTheme()));
+updateThemeToggleElements();

@@ -20,15 +20,6 @@ h2 {
   color: var(--text1);
 }
 
-hr {
-  border: 0.1vh solid var(--background2);
-  margin: 0;
-  width: 100vw;
-  height: 0vh;
-  position: relative;
-  text-shadow: 0 0 4px var(--shadow3);
-}
-
 .logo {
   position: relative;
   width: 80px;

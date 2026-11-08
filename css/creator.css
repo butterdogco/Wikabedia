@@ -1,4 +1,3 @@
-@import url(main.css);
 @import url(article.css);
 
 .articleTitle {
@@ -169,15 +168,4 @@ textarea:focus {
 .articleSubmit:hover {
   background-color: var(--background2);
   opacity: 1;
-}
-
-.disclaimer {
-  opacity: 0.8;
-  text-align: center;
-  font-style: italic;
-  color: var(--text2);
-
-  a {
-    color: var(--textlink1);
-  }
 }
