@@ -62,11 +62,11 @@ function search(query) {
   let queryWords = query.split(' ').filter(word => !searchIgnoredWords.includes(word));
 
   data.forEach((item, index) => {
-    if (!item.title || !item.desc || !item.tags) return;
+    if (!item.title || !item.desc || !item.author) return;
 
     const title = processString(item.title);
     const desc = processString(item.desc);
-    const tags = processString(item.tags);
+    const author = processString(item.author);
 
     let score = 0;
 
@@ -83,7 +83,7 @@ function search(query) {
       if (queryWords.includes(word)) score += 2;
     });
 
-    tags.split(' ').forEach(word => {
+    author.split(' ').forEach(word => {
       if (queryWords.includes(word)) score += 1;
     });
 
@@ -96,7 +96,7 @@ function search(query) {
           score += 0.5
         else if (desc.includes(word))
           score += 0.35
-        else if (tags.includes(word))
+        else if (author.includes(word))
           score += 0.2
       });
 

@@ -1,0 +1,16 @@
+@import url(main.css);
+
+body {
+  margin-top: 100px;
+  color: var(--text1)
+}
+
+h2 {
+  text-align: center;
+}
+
+.cardScroller {
+  flex-wrap: wrap;
+  height: auto;
+  max-height: none;
+}

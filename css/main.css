@@ -137,6 +137,7 @@ hr {
   padding: 8px;
   overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-color: var(--background3) var(--background1);
   box-sizing: border-box;
 }
 
@@ -396,7 +397,7 @@ footer {
     &:hover,
     &:focus {
       background: var(--background3);
-      box-shadow: 0px 0px 2vh var(--shadow1);
+      box-shadow: 0 0 4px var(--shadow2);
     }
   }
 }

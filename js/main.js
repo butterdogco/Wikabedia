@@ -26,16 +26,22 @@ function newCard(title, description, image, url) {
   
   const imageElement = document.createElement('img');
   imageElement.setAttribute('loading', 'lazy');
+  imageElement.setAttribute('decoding', 'async');
   imageElement.setAttribute('src', image.replace('../', '/'));
+  if (image.startsWith('https://')) {
+    imageElement.setAttribute('referrerpolicy', 'no-referrer');
+  }
   cardElement.append(imageElement);
 
   const titleElement = document.createElement('h3');
   titleElement.innerText = title;
   cardElement.append(titleElement);
 
-  const descriptionElement = document.createElement('p');
-  descriptionElement.innerText = description.slice(0, 64);
-  cardElement.append(descriptionElement);
+  if (description) {
+    const descriptionElement = document.createElement('p');
+    descriptionElement.innerText = description.slice(0, 64);
+    cardElement.append(descriptionElement);
+  } else console.warn('Attempted to create card without description. Title:', title);
 
   return cardElement;
 }
