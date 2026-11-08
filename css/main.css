@@ -43,9 +43,9 @@
 
   --textlink1: rgb(120, 120, 240);
 
-  --shadow1: 0px 0px 2vh rgba(0, 0, 0, 0.1);
-  --shadow2: 0px 0px 2vh rgba(0, 0, 0, 0.05);
-  --shadow3: 0px 0px 2vh rgba(0, 0, 0, 0.75);
+  --shadow1: #000000bf;
+  --shadow2: #0000000d;
+  --shadow3: #0000001a;
 }
 
 /* Animations */

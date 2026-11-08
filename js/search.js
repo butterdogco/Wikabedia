@@ -48,6 +48,7 @@ function search(query) {
 
   if (isEmptyQuery) {
     noSearchQueryNotice.classList.remove('hidden');
+    noExactResultsNotice.classList.add('hidden');
     partialMatchContainer.classList.add('hidden');
     return;
   } else {
@@ -96,7 +97,7 @@ function search(query) {
         else if (desc.includes(word))
           score += 0.35
         else if (tags.includes(word))
-          score + 0.2
+          score += 0.2
       });
 
     if (score > 0) matches.push([score, index]);
