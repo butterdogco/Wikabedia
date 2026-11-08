@@ -4,26 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">article - wikabedia</title>
-  <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia.ico">
+  <title id="pageTitle">article creator - wikabedia</title>
+  <link rel="apple-touch-icon" sizes="256x256" href="/img/wikabedia icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" href="img/wikabedia%20icon.png">
+  <link rel="shortcut icon" href="/img/wikabedia.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="css/creator.css">
+  <link rel="stylesheet" href="/css/creator.css?v=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="maek wikabedia artical">
 </head>
 
 <body>
-  <div class="logoDiv" onclick="site('./')">
-    <img src="img/back.png">
+  <a class="logoDiv" href="/">
+    <img src="/img/back.png">
+  </a>
+
+  <div class="topButtons">
+    <div class="button search">
+      <img src="/img/search.png">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
+    </div>
   </div>
-  <h1 class="logoText">wikabedia</h1>
+
   <br>
+  
   <div class="article">
     <div class="articleImage">
-      <img src="img/wat-da-dog.jpg" id="articleBackgroundImage">
+      <img src="/img/wat-da-dog.jpg" id="articleBackgroundImage">
     </div>
 
     <form id="articleForm" onsubmit="return false;">
@@ -45,18 +53,30 @@
           <button class="articleSubmit">Submit</button>
         </div>
       </div>
-      <p class="disclaimer">by posting an article on wikabedia, you agree to the ButterDogCo <a href="https://b-dog.co/tos" target="_blank">TOS</a> and <a href="https://b-dog.co/pp" target="_blank">PP</a> (haha pp)</p>
     </form>
   </div>
 
+  <hr>
   <footer>
-    <a class="not-a-button">copyirigt wikabedia 2026</a>
-    <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
+    <span class="notice">&copy; 2026 <a href="https://butterdogco.com">ButterDogCo</a></span>
+
+    <ul class="left">
+      <span class="heading">legal</span>
+      <li><a href="https://butterdogco.com/terms">terms AND conditions</a></li>
+      <li><a href="https://butterdogco.com/privacy">privacy poolicy</a></li>
+    </ul>
+
+    <div class="seperator"></div>
+    
+    <ul class="right">
+      <span class="heading">appearance</span>
+      <li><button class="themeToggle">dark mode 🤤</button></li>
+    </ul>
   </footer>
 
-  <script src="js/main.js?v=1"></script>
+  <script src="js/main.js?v=2"></script>
   <script src="js/creator.js"></script>
-  <script src="js/theme.js"></script>
+  <script src="js/theme.js?v=2"></script>
 </body>
 
 </html>

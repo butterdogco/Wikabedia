@@ -5,52 +5,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">article - wikabedia</title>
-  <link rel="apple-touch-icon" sizes="256x256" href="../img/wikabedia.ico">
+  <link rel="apple-touch-icon" sizes="256x256" href="/img/wikabedia.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" href="../img/wikabedia%20icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="../css/article.css">
+  <link rel="stylesheet" href="/css/article.css?v=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="a wikabedia artical">
 </head>
 
 <body>
-  <div class="logoDiv" onclick="site('../')">
-    <img src="../img/back.png">
+  <div class="loading" id="loadDiv">
+    <img src="/img/wikabedia.png" class="loading-icon">
+    <div class="loading-spinner"></div>
   </div>
-  <h1 class="logoText">wikabedia</h1>
-  <br>
+
+  <a class="logoDiv" href="/">
+    <img src="/img/back.png">
+  </a>
+
+  <div class="topButtons">
+    <div class="button search">
+      <img src="/img/search.png">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
+    </div>
+    <a class="button create" href="/creator.html">
+      <img src="/img/create.png">
+      <p>create article</p>
+    </a>
+  </div>
+
   <div class="article">
     <div class="articleImage">
       <img src="../img/wikabedia.png" id="articleImg">
     </div>
     <h1 class="articleTitle" id="articleTitle">loading</h1>
     <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage (or this article literally doesn't exist)</pre>
-    <p class="articleWriter" id="articleWriter">article by your mother</p>
-    <p class="articleWriter" id="articleDate">created 09/49/1948</p>
+    <p class="articleInfo">article by <span id="articleWriter">your mother</span></p>
+    <p class="articleInfo">created on <span id="articleDate">09/49/1948</span></p>
   </div>
+  
   <hr>
-  <h2 class="recomend"
-    onclick="addCard('no don click me','why did you click that','../img/wikabedia.png','#','recomend');">recomend articles
-  </h2>
-  <div class="items" id="recomend"></div>
-  <div class="loading" id="loadDiv">
-    <img src="../img/wikabedia.png" class="loading-icon">
-    <div class="loading-spinner"></div>
-  </div>
+  <h2 class="recommendedArticlesHeading">recomend articles</h2>
+  <div class="cardScroller" id="recommendedArticlesContainer"></div>
 
+  <hr>
   <footer>
-    <span>copyirigt wikabedia 2026</span>
-    <a href="../creator.html">maek an article 4 FRE!</a>
-    <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
+    <span class="notice">&copy; 2026 <a href="https://butterdogco.com">ButterDogCo</a></span>
+
+    <ul class="left">
+      <span class="heading">legal</span>
+      <li><a href="https://butterdogco.com/terms">terms AND conditions</a></li>
+      <li><a href="https://butterdogco.com/privacy">privacy poolicy</a></li>
+    </ul>
+
+    <div class="seperator"></div>
+    
+    <ul class="right">
+      <span class="heading">appearance</span>
+      <li><button class="themeToggle">dark mode 🤤</button></li>
+    </ul>
   </footer>
 
-  <script src="../js/main.js?v=1"></script>
-  <script src="../js/articlesDir.js?v=1"></script>
-  <script src="../js/theme.js"></script>
-  <script src="../js/autocomplete.js"></script>
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/articlesDir.js?v=2"></script>
+  <script src="/js/theme.js?v=2"></script>
+  <!-- <script src="/js/autocomplete.js"></script> -->
   <script>
     const URL_REGEX = /\((.*?)\)\[(.*?)\]/g;
     const ARTICLE_REGEX = /Article\/\d+$/;
@@ -246,7 +267,7 @@
 
     loadArticle();
   </script>
-  <script src="../js/recomend.js"></script>
+  <script src="/js/recomend.js?v=2"></script>
 </body>
 
 </html>

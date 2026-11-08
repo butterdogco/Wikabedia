@@ -4,22 +4,12 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
-  background: var(--background1);
 }
 
 h1 {
   font-size: 4vh;
-  cursor: default;
   font-weight: 400px;
-  cursor: default;
   color: var(--text1);
-}
-
-.logoText {
-  margin-top: -7vh;
-  font-size: 4vh;
-  margin-left: 12vh;
-  display: none;
 }
 
 h2 {
@@ -27,21 +17,7 @@ h2 {
   margin-top: 5vh;
   font-size: 3vh;
   font-weight: bold;
-  cursor: default;
   color: var(--text1);
-}
-
-
-hr {
-  border: 1px solid var(--background2);
-  width: 100vw;
-  height: 0vh;
-}
-
-.logoDesc,
-.logoText,
-.recomend {
-  cursor: default;
 }
 
 .logoDesc {
@@ -58,6 +34,7 @@ hr {
   position: absolute;
   display: inline-block;
   top: 0;
+  z-index: -1;
 }
 
 .articleImage img {
@@ -89,70 +66,9 @@ hr {
   width: 96vw;
   min-height: 70vh;
   color: var(--text1);
-  z-index: 1;
 
   a {
     color: var(--textlink1);
-  }
-}
-
-.articleText.editorMode {
-  display: none;
-}
-
-.editorInput {
-  display: flex;
-  background: none;
-  color: var(--text1);
-  border: none;
-  border: 2px solid var(--background2);
-  backdrop-filter: blur(5px) brightness(90%);
-  border-radius: 4px;
-  resize: none;
-  transition: 0.1s ease;
-  transition-property: border;
-}
-
-.editorInput:focus {
-  outline: none;
-  border: 2px solid var(--text1);
-}
-
-.editorButtons {
-  width: calc(96vw + 8px);
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap: 12px;
-  justify-content: center;
-
-  button {
-    flex-grow: 1;
-    display: block;
-    margin-top: 12px;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bolder;
-    color: var(--text1);
-    opacity: 0.8;
-    padding: 10px;
-    border-radius: 4px;
-    border: 2px solid var(--background2);
-    background-color: transparent;
-    backdrop-filter: blur(5px) brightness(90%);
-    transition: 0.1s ease;
-    transition-property: background-color, opacity;
-  }
-
-  button:hover,
-  button:focus {
-    background-color: var(--background2);
-    opacity: 1;
   }
 }
 
@@ -162,7 +78,6 @@ hr {
 
 pre {
   font-family: inherit;
-  cursor: default;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
@@ -170,12 +85,7 @@ pre {
   word-wrap: break-word;
 }
 
-p {
-  cursor: default;
-}
-
-.articleWriter {
-  cursor: default;
+.articleInfo {
   color: rgb(160, 160, 160);
   text-align: center;
 }

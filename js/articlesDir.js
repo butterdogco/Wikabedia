@@ -193,7 +193,7 @@ function formatData(dat) {
         image: image, // Column F
         link: `/Articles/article.html?article=${responseNumber}`,
         place: "items",
-        tags: response[2] + " " + response[1], // Column B, & Column C
+        tags: response[2], // Column C
         approved: response[8],
         removalReason: response[9]
       };

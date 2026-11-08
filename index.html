@@ -10,103 +10,76 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/home.css?v=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="te worlds source of infomation">
 </head>
 
 <body>
-  <div class="headImageGradient" id="headImageGradient">
-    <div class="headImage" id="headImage"></div>
-  </div>
-  <div class="logo">
-    <img src="img/wikabedia.png">
-  </div>
-  <h1 class="logoText" id="logoText">welcom to wikabedia</h1>
-  <p class="logoDesc">te worlds source of infomation</p>
-  <div class="topButtons">
-    <div class="search">
-      <img src="img/search.png">
-      <input type="text" placeholder="saerch for somting" id="searchBox">
-    </div>
-    <div class="create" onclick="site('creator.html')">
-      <img src="img/create.png">
-      <p>create article</p>
-    </div>
-  </div>
-  <br>
-  <hr>
-  <h2 class="all" onclick="addCard('no don click me','why did you click that','img/wikabedia.png',null,'items');">lates article</h2>
-  <div class="items" id="items"></div>
-  <h2 class="toparticle" onclick="addCard('yor mom','haha','img/creating-a-piep-bom.jpg',null,'top')">top articals of panet earht</h2>
-  <div class="items" id="top"></div>
-
-  <h2 class="recomend" onclick="addCard('yuo smel','imagien','img/creating-a-piep-bom.jpg',null,'recomend')">recomend article</h2>
-  <div class="items" id="recomend"></div>
-
   <div class="loading" id="loadDiv">
     <img src="img/wikabedia.png" class="loading-icon">
     <div class="loading-spinner"></div>
   </div>
 
+  <div class="headImageGradient" id="headImageGradient">
+    <div class="headImage" id="headImage"></div>
+  </div>
+
+  <div class="logo">
+    <img src="img/wikabedia.png">
+  </div>
+
+  <div class="topButtons">
+    <div class="button search">
+      <img src="/img/search.png">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
+    </div>
+    <a class="button create" href="/creator.html">
+      <img src="/img/create.png">
+      <p>create article</p>
+    </a>
+  </div>
+
+  <h1 class="logoText" id="logoText">welcom to wikabedia</h1>
+  <p class="logoDesc">te worlds source of infomation</p>
+  
+  <br>
+  <hr>
+
+  <h2 class="all">lates article</h2>
+  <div class="cardScroller" id="latestArticlesContainer"></div>
+
+  <h2 class="toparticle">top articals of panet earht</h2>
+  <div class="cardScroller" id="topArticlesContainer"></div>
+
+  <h2 class="recomend">recomend article</h2>
+  <div class="cardScroller" id="recommendedArticlesContainer"></div>
+
   <hr>
   <footer>
-    <a class="not-a-button">copyirigt wikabedia 2026</a>
-    <a href="creator.html">maek an article 4 FRE!</a>
-    <a href="#" onclick="theme()" id="themeToggle">dark moed</a>
+    <span class="notice">&copy; 2026 <a href="https://butterdogco.com">ButterDogCo</a></span>
+
+    <ul class="left">
+      <span class="heading">legal</span>
+      <li><a href="https://butterdogco.com/terms">terms AND conditions</a></li>
+      <li><a href="https://butterdogco.com/privacy">privacy poolicy</a></li>
+    </ul>
+
+    <div class="seperator"></div>
+    
+    <ul class="right">
+      <span class="heading">appearance</span>
+      <li><button class="themeToggle">dark mode 🤤</button></li>
+    </ul>
   </footer>
 
-  <script src="js/main.js?v=1"></script>
-  <script src="js/articlesDir.js?v=1"></script>
-  <script src="js/home.js?v=1"></script>
-  <script src="js/recomend.js?v=1"></script>
-  <script src="js/theme.js?v=1"></script>
+  <script src="js/articlesDir.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
+  <script src="js/home.js?v=2"></script>
+  <script src="js/recomend.js?v=2"></script>
+  <script src="js/theme.js?v=2"></script>
   <script src="js/backgroundImage.js?v=1"></script>
-  <script src="js/autocomplete.js?v=1"></script>
-  <script>
-    function createDefaults() {
-      if (done === false) {
-        setTimeout(createDefaults, 100);
-      } else {
-        try {
-          for (var item of data) {
-            if (item.title && item.desc && item.image && item.link && item.place) {
-              addCard(item.title, item.desc, item.image, item.link, item.place);
-            }
-          }
-
-          const parent = document.getElementById("items");
-          const arr = Array.from(parent.childNodes);
-          arr.reverse();
-          parent.append(...arr);
-
-          const e = data[3];
-          const f = data[13];
-          const g = data[9];
-          addCard(e.title, e.desc, e.image, e.link, "top");
-          addCard(f.title, f.desc, f.image, f.link, "top");
-          addCard(g.title, g.desc, g.image, g.link, "top");
-        }
-        catch (err) {
-          console.error(err);
-        }
-      }
-    }
-
-    function checkLoad() {
-      if (done === true) {
-        document.getElementById('loadDiv').style.opacity = 0;
-        document.getElementById('loadDiv').remove();
-        
-      } else {
-        setTimeout(checkLoad, 150);
-      }
-    }
-
-    setTimeout(createDefaults, 100);
-    setTimeout(checkLoad, 150);
-  </script>
+  <!-- <script src="js/autocomplete.js?v=1"></script> -->
 </body>
 
 </html>

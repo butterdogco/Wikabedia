@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>how to b humen - wikabedia</title>
-    <link rel="shortcut icon" href="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/article.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <div class="logoDiv" onclick="site('../')">
-      <img src="../img/back.png">
-    </div>
-    <h1 class="logoText">wikabedia</h1>
-    <br>
-    <div class="article">
-      <div class="articleImage">
-        <img src="../img/how-to-be-human.jpg">
-      </div>
-      <h1 class="articleTitle">how to b humen</h1>
-      <p class="articleText" id="articleText">
-        1. don be buter dog<br>
-        2. finis leson todey!!!!!
-        </p>
-      <p class="articleWriter">article by keegan</p>
-    </div>
-    <hr>
-    <h2 class="recomend" onclick="addCard('no don click me','why did you click that','../img/wikabedia.png','#','recomend');">recomend articles</h2>
-    <div class="items" id="recomend">
-      
-      <!--
-      <div class="item" id="item" onclick="site('https://google.com')">
-        <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
-        <h3>Name</h3>
-        <p>Short description</p>
-      </div>
-      -->
-      
-    </div>
-      
-        <script src="../js/articlesDir.js?v=1"></script>
-    <script src="../js/theme.js"></script>
 
-    <script src="../js/recomend.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>how to b humen - wikabedia</title>
+  <link rel="shortcut icon" href="/img/wikabedia.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/article.css?v=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <a class="logoDiv" href="/">
+    <img src="../img/back.png">
+  </a>
+
+  <div class="topButtons">
+    <div class="button search">
+      <img src="/img/search.png">
+      <input type="text" placeholder="saerch for somting" id="searchBox">
+    </div>
+    <a class="button create" href="/creator.html">
+      <img src="/img/create.png">
+      <p>create article</p>
+    </a>
+  </div>
+
+  <div class="article">
+    <div class="articleImage">
+      <img src="../img/how-to-be-human.jpg">
+    </div>
+    <h1 class="articleTitle">how to b humen</h1>
+    <p class="articleText" id="articleText">
+      1. don be buter dog<br>
+      2. finis leson todey!!!!!
+    </p>
+    <p class="articleInfo">article by keegan</p>
+  </div>
+  
+  <hr>
+  <h2 class="recommendedArticlesHeading">recomend articles</h2>
+  <div class="cardScroller" id="recommendedArticlesContainer"></div>
+
+  <hr>
+  <footer>
+    <span class="notice">&copy; 2026 <a href="https://butterdogco.com">ButterDogCo</a></span>
+
+    <ul class="left">
+      <span class="heading">legal</span>
+      <li><a href="https://butterdogco.com/terms">terms AND conditions</a></li>
+      <li><a href="https://butterdogco.com/privacy">privacy poolicy</a></li>
+    </ul>
+
+    <div class="seperator"></div>
+    
+    <ul class="right">
+      <span class="heading">appearance</span>
+      <li><button class="themeToggle">dark mode 🤤</button></li>
+    </ul>
+  </footer>
+
+  <script src="/js/main.js?v=2"></script>
+  <script src="/js/articlesDir.js?v=2"></script>
+  <script src="/js/theme.js?v=2"></script>
+  <script src="/js/recomend.js?v=2"></script>
+</body>
+
 </html>
