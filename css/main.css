@@ -142,6 +142,7 @@ hr {
 }
 
 .cardButton {
+  position: relative;
   flex-shrink: 0;
   flex-grow: 0;
   width: 225px;
@@ -166,20 +167,30 @@ hr {
     transition: 0.2s ease;
   }
 
+  h3,
+  p {
+    word-wrap: break-word;
+  }
+
   h3 {
-    position: relative;
-    margin-top: -7vh;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: calc(100% - 8px);
+    margin: 0;
+    margin-top: -34px;
     cursor: pointer;
-    font-size: 1.9vh;
+    font-size: 1.1rem;
     color: var(--text1);
   }
 
   p {
     position: relative;
     color: var(--text2);
-    margin-top: -1.8vh;
+    margin-top: -30px;
     cursor: pointer;
-    font-size: 1.5vh;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
   }
 
   &:hover,

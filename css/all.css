@@ -10,7 +10,26 @@ h2 {
 }
 
 .cardScroller {
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  justify-content: space-around;
   height: auto;
   max-height: none;
+
+  .cardButton {
+    width: auto;
+  }
+}
+
+@media (max-width: 550px) {
+  body {
+    margin-top: 145px;
+  }
+}
+
+@media (max-width: 500px) {
+  .cardScroller .cardButton {
+    width: calc(100% - 16px);
+  }
 }
