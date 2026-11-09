@@ -7,17 +7,19 @@ body {
 }
 
 h1 {
-  font-size: 4vh;
-  font-weight: 400px;
+  font-size: 2rem;
+  font-weight: 400;
   color: var(--text1);
 }
 
 h2 {
-  text-align: center;
-  margin-top: 5vh;
-  font-size: 3vh;
-  font-weight: bold;
+  margin: 0;
+  margin-top: 12px;
   color: var(--text1);
+
+  &:not(.articleContentHeading) {
+    text-align: center;
+  }
 }
 
 .logoDesc {
@@ -70,6 +72,12 @@ h2 {
   a {
     color: var(--textlink1);
   }
+
+  ul, ol {
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 #pageName {
@@ -79,9 +87,6 @@ h2 {
 pre {
   font-family: inherit;
   white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
   word-wrap: break-word;
 }
 

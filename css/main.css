@@ -234,10 +234,42 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
   position: fixed;
   top: 20px;
-  right: 20px;
   z-index: 1;
+
+  &.left {
+    left: 20px;
+    align-items: flex-start;
+
+    .button {
+      img {
+        float: left;
+      }
+
+      p {
+        float: right;
+        right: 20px;
+      }
+    }
+  }
+
+  &.right {
+    right: 20px;
+    align-items: flex-end;
+
+    .button {
+      img {
+        float: right;
+      }
+
+      p {
+        float: left;
+        left: 20px;
+      }
+    }
+  }
 
   .button {
     padding: 20px;
@@ -253,7 +285,6 @@ hr {
     box-shadow: 0 0 8px var(--shadow3);
     cursor: pointer;
     overflow: hidden;
-    margin-left: auto;
 
     * {
       cursor: inherit;
@@ -263,20 +294,17 @@ hr {
       position: relative;
       height: 100%;
       object-fit: contain;
-      float: right;
       filter: var(--imagefilter);
     }
 
     p {
       position: absolute;
-      text-align: center;
       margin-top: auto;
       margin-bottom: auto;
       opacity: 0;
       transition: 0.2s ease;
       color: var(--text1);
       white-space: nowrap;
-      float: left;
     }
 
     &:hover,

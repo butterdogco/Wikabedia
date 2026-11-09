@@ -11,7 +11,9 @@ const articleEmail = form.querySelector("#articleEmail");
 const tool_insertLink = form.querySelector("#insertLink");
 const submitURL = "https://wikabedia-backend.fly.dev/submit";
 const maxFileSizeMB = 8;
+
 let uploadedImage = null;
+let processingCreateRequest = false;
 
 function site(url) {
   document.body.style.opacity = 0;
@@ -61,6 +63,11 @@ function getValues() {
 }
 
 async function sendCreateRequest() {
+  if (processingCreateRequest) {
+    alert('ALREADY PROCESSING A CREATE REQUEST PLS WAIT');
+    return;
+  }
+
   if (!uploadedImage) {
     alert("PLS upload an image for te artickle. 😭😭😭");
     return;
@@ -71,6 +78,8 @@ async function sendCreateRequest() {
     console.error("Erm, stop doing stupid stuff. Invalid input values; cannot send request.");
     return;
   };
+
+  processingCreateRequest = true;
 
   await fetch(submitURL, {
     method: "POST",
@@ -87,25 +96,32 @@ async function sendCreateRequest() {
         alert("Something went wrong while creating the article. 😭😭😭");
       }
     })
+    .catch((err) => {
+      console.error('Failed to send create request:', err);
+    });
+
+  processingCreateRequest = false;
 }
 
 function insertLink() {
   let type = prompt("What type of link do you want to insert? ('article', 'other')");
   let link;
   type = type.toLowerCase().trim();
-  if (type != "article" && type != "other") {
+
+  if (type !== 'article' && type !== 'other') {
     alert("Invalid link type. Please enter 'article' or 'other'. 😭😭😭");
     return;
-  } else {
-    if (type == "article") {
-      number = prompt("Enter the article ID (e.g., 1):");
-      if (!number) return;
-      link = `Article/${number}`;
-    } else {
-      link = prompt("Enter the URL:");
-      if (!link) return;
-    }
   }
+
+  if (type == "article") {
+    number = prompt("Enter the article ID (e.g., 1):");
+    if (!number) return;
+    link = `Article/${number}`;
+  } else {
+    link = prompt("Enter the URL (e.g., https://google.com/):");
+    if (!link) return;
+  }
+
   const text = prompt("What should the link's text say?");
 
   // Push the link into the article text (and at the cursor position if possible) in this format: [link text](url)

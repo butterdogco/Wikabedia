@@ -13,28 +13,34 @@
 </head>
 
 <body>
-  <a class="logoDiv" href="/">
-    <img src="../img/back.png">
-  </a>
+  <div class="topButtons left">
+    <a class="button" href="/" title="Return to home page">
+      <img src="/img/back.png">
+      <p>back to home</p>
+    </a>
+  </div>
 
-  <div class="topButtons">
+  <div class="topButtons right">
     <div class="button search">
       <img src="/img/search.png">
       <input type="text" placeholder="saerch for somting" id="searchBox">
     </div>
     <a class="button create" href="/creator.html">
-      <img src="/img/create.png">
+      <img src="/img/create.png" title="Go to article creator page">
       <p>create article</p>
     </a>
   </div>
 
   <div class="article">
     <div class="articleImage">
-      <img src="../img/wrld-histry.jpeg">
+      <img src="/img/wrld-histry.jpeg">
     </div>
+
     <h1 class="articleTitle">wrld histry</h1>
-    <p class="articleText" id="articleText">yeer is 2025. peeple did tings!</p>
-    <p class="articleInfo">article by keegan</p>
+    <p class="articleText" id="articleText">yeer is <span style="text-decoration:line-through;">2025</span> 2026. peeple did tings!</p>
+    
+    <p class="articleInfo">article by <a href="/search.html?query=keegan">keegan</a></p>
+    <p class="articleInfo">created at some point - legacy article</p>
   </div>
 
   <hr>
