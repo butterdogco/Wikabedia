@@ -1,4 +1,4 @@
-const loadDiv = document.getElementById('loadDiv');
+const loadingoverlay = document.getElementById('loadingOverlay');
 const logoQuoteLabel = document.getElementById('logoQuote');
 const latestArticlesContainer = document.getElementById('latestArticlesContainer');
 const categoryInsertAfterPoint = document.getElementById('categoryInsertAfterPoint');
@@ -155,8 +155,8 @@ async function createDefaults() {
   const latestArticles = data.slice(data.length - latestArticlesAmount).reverse().filter(article => article.title && article.desc && article.author);
   createCategory('top ' + latestArticlesAmount + ' lates articals', null, latestArticles);
 
-  loadDiv.classList.add('hide');
-  setTimeout(() => loadDiv.remove(), 200);
+  loadingoverlay.classList.add('hide');
+  setTimeout(() => loadingoverlay.remove(), 200);
 }
 
 createDefaults();

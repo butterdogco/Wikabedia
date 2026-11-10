@@ -16,9 +16,11 @@
 </head>
 
 <body>
-  <div class="loading" id="loadDiv">
-    <img src="/img/wikabedia.png" class="loading-icon">
-    <div class="loading-spinner"></div>
+  <div class="loadingOverlay" id="loadingOverlay">
+    <img src="/img/wikabedia.png" class="icon">
+    <div class="progressBarContainer">
+      <div class="progressBar"></div>
+    </div>
   </div>
 
   <div class="topButtons left">
@@ -80,7 +82,7 @@
     const ARTICLE_REGEX = /Article\/\d+$/;
     const DRIVE_URL_REGEX = /^https:\/\/drive\.google\.com\/open\?id=.*/;
 
-    const loadDiv = document.getElementById('loadDiv');
+    const loadingOverlay = document.getElementById('loadingOverlay');
 
     /*
       "A", // date
@@ -273,9 +275,9 @@
         if (config.handler) config.handler(columnValue);
       }
 
-      loadDiv.style.opacity = 0;
+      loadingOverlay.style.opacity = 0;
       setTimeout(() => {
-        loadDiv.remove();
+        loadingOverlay.remove();
       }, 200);
     }
 

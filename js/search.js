@@ -1,8 +1,4 @@
-const loadDiv = document.getElementById('loadDiv');
-const notFoundElement = document.getElementById('notFound');
-// nice element names they're really clear and descriptive
-const searchBoxContainerElement = document.getElementById('search');
-const searchDivElement = document.getElementById('searchDiv');
+const loadingOverlay = document.getElementById('loadingOverlay');
 
 const noSearchQueryNotice = document.getElementById('noSearchQueryNotice');
 const noExactResultsNotice = document.getElementById('noExactResultsNotice');
@@ -158,8 +154,8 @@ async function init() {
   const searchQueryParam = url.searchParams.get('query');
   search(searchQueryParam);
 
-  loadDiv.classList.add('hide');
-  setTimeout(() => loadDiv.remove(), 200);
+  loadingOverlay.classList.add('hide');
+  setTimeout(() => loadingOverlay.remove(), 200);
 }
 
 init();

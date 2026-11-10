@@ -20,7 +20,7 @@
   --logobackground: #fff;
   --imagefilterdark: invert(100%);
   --hometopgradientdark: #28283299;
-  --spinnercolordark1: #00001e80;
+  --spinnercolordark1: #8c8c8c;
 
   --textlight1: #000;
   --textlight2: #666565;
@@ -50,13 +50,71 @@
 
 /* Animations */
 
-@keyframes spin {
+@keyframes progressBar {
   0% {
+    width: 0;
+  }
+
+  10% {
+    width: 10%;
+  }
+
+  20% {
+    width: 50%;
+  }
+
+  40% {
+    width: 30%;
+  }
+
+  50% {
+    width: 70%;
+  }
+
+  63% {
+    width: 70%;
+  }
+
+  70%,
+  75% {
+    width: 99%;
+  }
+
+  79% {
+    width: 95%;
+  }
+
+  80% {
+    width: 80%;
     transform: rotate(0deg);
   }
 
+  90% {
+    width: 100%;
+    transform: rotate(500deg);
+    background: var(--spinnercolor1);
+  }
+
+  92% {
+    background: red;
+    transform: rotate(0deg);
+  }
+
+  94% {
+    background: green;
+  }
+
+  96% {
+    background: blue;
+  }
+
+  98% {
+    background: pink;
+  }
+
   100% {
-    transform: rotate(360deg);
+    width: 100%;
+    background: var(--spinnercolor1);
   }
 }
 
@@ -81,44 +139,46 @@ body {
   transition: 0.2s ease;
 }
 
-.loading {
+.loadingOverlay {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
   background: var(--background1);
   transition: 0.2s ease;
 
   &.hide {
     opacity: 0;
   }
-}
 
-.loading-icon {
-  width: 5vh;
-  height: 5vh;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: var(--imagefilter);
-}
+  .icon {
+    width: 64px;
+    height: 64px;
+    filter: var(--imagefilter);
+  }
 
-.loading-spinner {
-  border: 16px solid var(--spinnercolor1);
-  /* Background */
-  border-top: 16px solid var(--background3);
-  /* Bar color */
-  border-radius: 50%;
-  width: 10vh;
-  height: 10vh;
-  animation: spin 1s linear infinite;
-  position: fixed;
-  top: calc(50% - 6.75vh);
-  left: calc(50% - 6.75vh);
-  transform: translate(-50%, -50%);
+  .progressBarContainer {
+    width: 150px;
+    max-width: 90vw;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--background2);
+
+    .progressBar {
+      width: 0;
+      height: 100%;
+      background: var(--spinnercolor1);
+      animation: progressBar 10s ease forwards;
+    }
+  }
 }
 
 hr {
