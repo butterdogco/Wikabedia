@@ -156,6 +156,12 @@ body {
 
   &.hide {
     opacity: 0;
+    pointer-events: none;
+
+    .progressBarContainer .progressBar {
+      animation: none;
+      width: 100%;
+    }
   }
 
   .icon {

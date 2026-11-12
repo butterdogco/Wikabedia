@@ -1,4 +1,4 @@
-const loadDiv = document.getElementById('loadDiv');
+const loadingOverlay = document.getElementById('loadingOverlay');
 const allArticlesContainer = document.getElementById('allArticlesContainer');
 
 async function createDefaults() {
@@ -20,8 +20,8 @@ async function createDefaults() {
     }
   }
 
-  loadDiv.classList.add('hide');
-  setTimeout(() => loadDiv.remove(), 200);
+  loadingOverlay.classList.add('hide');
+  setTimeout(() => loadingOverlay.remove(), 200);
 }
 
 createDefaults();
