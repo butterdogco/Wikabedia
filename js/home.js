@@ -25,7 +25,7 @@ const categories = [
   {
     title: 'How To',
     desc: 'lern how 2 do sometin new',
-    stringMatch: 'how to'
+    match: /how (to|2)/i
   }
 ];
 const minRandomAuthors = 1;
@@ -100,9 +100,9 @@ async function createDefaults() {
 
   logoQuoteLabel.innerText = quotes[Math.floor(Math.random() * quotes.length)];
 
-  for (const { title, desc, stringMatch } of categories) {
+  for (const { title, desc, match } of categories) {
     const matchingArticles = data.filter(article =>
-      (article.title && article.title.toLowerCase().includes(stringMatch)) || (article.desc && article.desc.toLowerCase().includes(stringMatch))
+      (article.title && match.test(article.title) || (article.desc && match.test(article.desc))
     );
     if (matchingArticles.length === 0) {
       console.warn('No matching articles found for category:', title);
