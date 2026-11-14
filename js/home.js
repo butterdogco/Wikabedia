@@ -102,7 +102,7 @@ async function createDefaults() {
 
   for (const { title, desc, match } of categories) {
     const matchingArticles = data.filter(article =>
-      (article.title && match.test(article.title) || (article.desc && match.test(article.desc))
+      (article.title && match.test(article.title) || (article.desc && match.test(article.desc)
     );
     if (matchingArticles.length === 0) {
       console.warn('No matching articles found for category:', title);
