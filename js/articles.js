@@ -118,41 +118,52 @@ let data = [
   }
 ];
 
+const apiUrl = "https://wikabedia-backend.fly.dev/get";
+const apiRequestOptions = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    sheet: "WIKABEDIA",
+  })
+};
+
 let sheetDataCache = null;
 
-// Send a POST request to the server to get the data from the Google Sheet, and return the data
+// Send a POST request to the server to get the data from the sheet, and return the data
 async function getSheetData() {
+  // Check for cached data to skip a web request
   if (sheetDataCache !== null) {
     return sheetDataCache;
   }
 
-  const url = "https://wikabedia-backend.fly.dev/get";
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      sheet: "WIKABEDIA",
-    })
-  };
+  try {
+    const response = await fetch(apiUrl, apiRequestOptions);
+    const sheetData = await response.json();
+    const data = sheetData.data;
+    sheetDataCache = data;
 
-  const response = await fetch(url, options);
-  const sheetData = await response.json();
-  const data = sheetData.data;
-
-  sheetDataCache = data;
-
-  return data;
+    return data;
+  } catch (err) {
+    console.error('Error in getSheetData:', err);
+    return [];
+  }
 }
 
 let done = false;
 async function getData() {
   if (!done) {
-    const dat = await getSheetData();
-    data.push(...formatData(dat));
+    const sheetData = await getSheetData();
+    if (!sheetData) {
+      console.error('Error in getData; sheetData is null');
+      return data;
+    }
+
+    data.push(...formatData(sheetData));
     done = true;
   }
+
   return data;
 }
 

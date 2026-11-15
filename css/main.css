@@ -8,44 +8,67 @@
   --backgroundlight2: #d6d6d6;
   --backgroundlight3: #c9c9c9;
   --backgroundlight4: #f3f3f3;
-  --imagefilterlight: invert(0%);
-  --hometopgradientlight: rgba(193, 192, 192, 0.6);
-  --spinnercolorlight1: rgba(0, 0, 0, 0.5);
+
+  /* --imagefilterlight: ; */
+
+  --hometopgradientlight: #c1c0c099;
+
+  --spinnercolorlight1: #00000080;
+
+  --textlight1: #000;
+  --textlight2: #666565;
 
   /* Dark Versions */
   --backgrounddark1: #141428;
   --backgrounddark2: #282832;
   --backgrounddark3: #8c8c8c;
   --backgrounddark4: #292929;
-  --logobackground: #fff;
-  --imagefilterdark: invert(100%);
+
+  --imagefilterdark: invert(1);
+
   --hometopgradientdark: #28283299;
+
   --spinnercolordark1: #8c8c8c;
 
-  --textlight1: #000;
-  --textlight2: #666565;
   --textdark1: #fff;
   --textdark2: #a0a0a0;
 
-  --background1: var(--backgroundlight1);
-  --background2: var(--backgroundlight2);
-  --background3: var(--backgroundlight3);
-  --background4: var(--backgroundlight4);
+  /* Dynamic variables */
+  --background1: light-dark(var(--backgroundlight1), var(--backgrounddark1));
+  --background2: light-dark(var(--backgroundlight2), var(--backgrounddark2));
+  --background3: light-dark(var(--backgroundlight3), var(--backgrounddark3));
+  --background4: light-dark(var(--backgroundlight4), var(--backgrounddark4));
 
-  --spinnercolor1: rgba(0, 0, 0, 0.5);
+  --spinnercolor1: light-dark(var(--spinnercolorlight1), var(--spinnercolordark1));
 
-  --imagefilter: var(--imagefilterlight);
+  /* --imagefilter: light-dark(var(--imagefilterlight), var(--imagefilterdark)); */
 
-  --hometopgradient: var(--hometopgradientlight);
+  --hometopgradient: light-dark(var(--hometopgradientlight), var(--hometopgradientdark));
 
-  --text1: var(--textlight1);
-  --text2: var(--textlight2);
+  --text1: light-dark(var(--textlight1, var(--textdark1)));
+  --text2: light-dark(var(--textlight2), var(--textdark2));
 
-  --textlink1: rgb(120, 120, 240);
+  /* Constants (don't change with theme) */
+  --textlink1: #7878f0;
 
   --shadow1: #000000bf;
   --shadow2: #0000000d;
   --shadow3: #0000001a;
+
+  /* Theme handling */
+  color-scheme: light dark;
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+
+    .img-invert {
+      filter: var(--imagefilterdark);
+    }
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
 }
 
 /* Animations */
@@ -167,7 +190,6 @@ body {
   .icon {
     width: 64px;
     height: 64px;
-    filter: var(--imagefilter);
   }
 
   .progressBarContainer {
@@ -288,7 +310,6 @@ hr {
     object-fit: contain;
     width: 100%;
     height: 100%;
-    filter: brightness(95%) var(--imagefilter);
   }
 }
 
@@ -360,7 +381,6 @@ hr {
       position: relative;
       height: 100%;
       object-fit: contain;
-      filter: var(--imagefilter);
     }
 
     p {

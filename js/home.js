@@ -2,6 +2,7 @@ const loadingOverlay = document.getElementById('loadingOverlay');
 const logoQuoteLabel = document.getElementById('logoQuote');
 const latestArticlesContainer = document.getElementById('latestArticlesContainer');
 const categoryInsertAfterPoint = document.getElementById('categoryInsertAfterPoint');
+const headImageElement = document.getElementById("headImage");
 const quotes = [
   '"te worlds source of infomation" - me, 2026',
   '"grolious wepsait" - Yaerma, 2024',
@@ -38,6 +39,8 @@ const latestArticlesAmount = 15;
 const insertAdjacentElement = (element, point) => point.insertAdjacentElement('afterend', element);
 
 let lastCategoryElement;
+let backgroundImageIndex = 0; // Keep track of the current index in the imageList
+let backgroundImageList = []; // Store the list of images
 
 function shuffle(array) {
   let currentIndex = array.length;
@@ -53,6 +56,16 @@ function shuffle(array) {
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
+}
+
+function removeParentTraversalSegments(input) {
+  let previous;
+  let sanitized = input;
+  do {
+    previous = sanitized;
+    sanitized = sanitized.replace(/\.\.\//g, '');
+  } while (sanitized !== previous);
+  return sanitized;
 }
 
 function createCategory(title, desc, articles) {
@@ -84,6 +97,50 @@ function createCategory(title, desc, articles) {
   insertAdjacentElement(cardScroller, prevElement);
 
   lastCategoryElement = cardScroller;
+}
+
+function changeBackgroundImage() {
+  headImageElement.style.backgroundImage = `url('${backgroundImageList[backgroundImageIndex]}')`;
+  backgroundImageIndex = (backgroundImageIndex + 1) % backgroundImageList.length; // Cycle to the next image
+}
+
+function initBackgroundImage() {
+  const shuffledData = data.slice();
+  for (let i = shuffledData.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledData[i], shuffledData[j]] = [shuffledData[j], shuffledData[i]];
+  }
+
+  const randomItems = shuffledData.slice(0, 15);
+  backgroundImageList = [];
+
+  randomItems.forEach(item => {
+    if (item.desc === null) {
+      item.desc = "No description";
+    }
+    
+    const image = item.image.toString();
+    let img = '';
+    let isGoogleDriveUrl = false;
+    
+    try {
+      const parsedUrl = new URL(image, window.location.origin);
+      isGoogleDriveUrl = parsedUrl.protocol === "https:" && parsedUrl.hostname === "drive.google.com";
+    } catch (e) {
+      isGoogleDriveUrl = false;
+    }
+    
+    if (image.startsWith("../") === false && isGoogleDriveUrl === false) {
+      img = image;
+    } else {
+      img = removeParentTraversalSegments(image);
+    }
+    
+    backgroundImageList.push(img); // Save item.image into the list
+  });
+
+  changeBackgroundImage(); // Display the first image immediately
+  setInterval(changeBackgroundImage, 3000); // Set interval to cycle through the images every 3 seconds
 }
 
 async function createDefaults() {
@@ -154,6 +211,12 @@ async function createDefaults() {
 
   const latestArticles = data.slice(data.length - latestArticlesAmount).reverse().filter(article => article.title && article.desc && article.author);
   createCategory('top ' + latestArticlesAmount + ' lates articals', null, latestArticles);
+
+  try {
+    initBackgroundImage();
+  } catch (err) {
+    console.error('Error in initBackgroundImage:', err);
+  }
 
   loadingOverlay.classList.add('hide');
   setTimeout(() => loadingOverlay.remove(), 200);

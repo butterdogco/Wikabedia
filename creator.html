@@ -7,6 +7,12 @@
   <title id="pageTitle">article creator - wikabedia</title>
   <link rel="apple-touch-icon" sizes="256x256" href="/img/wikabedia icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    const theme = localStorage.getItem('theme');
+    const metaColorSchemeElement = document.querySelector('meta[name="color-scheme"]');
+    metaColorSchemeElement.content = theme ? (theme === 'true' ? 'dark' : 'light') : 'light dark';
+  </script>
   <link rel="shortcut icon" href="/img/wikabedia.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,14 +24,14 @@
 <body>
   <div class="topButtons left">
     <a class="button" href="/" title="Return to home page">
-      <img src="/img/back.png">
+      <img src="/img/back.png" class="img-invert">
       <p>back to home</p>
     </a>
   </div>
 
   <div class="topButtons right">
     <div class="button search">
-      <img src="/img/search.png">
+      <img src="/img/search.png" class="img-invert">
       <input type="text" placeholder="saerch for somting" id="searchBox">
     </div>
   </div>
@@ -40,7 +46,7 @@
     <form id="articleForm" onsubmit="return false;">
       <input class="articleTitle" id="articleTitle" type="text" required title="Article title goes here" placeholder="Write a title..." maxlength="28"></input>
       <div class="textTools">
-        <button id="insertLink" class="link" type="button" title="Insert link"><img src="img/link.png"></button>
+        <button id="insertLink" class="link" type="button" title="Insert link"><img src="img/link.png" class="img-invert"></button>
       </div>
       <textarea class="articleText" id="articleText" type="text" required spellcheck="true" title="Article text goes here" placeholder="Write something amazing, illegal, stupid . . ."></textarea>
       <div class="articleExtra">

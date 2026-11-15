@@ -8,6 +8,12 @@
   <link rel="shortcut icon" href="img/wikabedia.ico">
   <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    const theme = localStorage.getItem('theme');
+    const metaColorSchemeElement = document.querySelector('meta[name="color-scheme"]');
+    metaColorSchemeElement.content = theme ? (theme === 'true' ? 'dark' : 'light') : 'light dark';
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/all.css">
@@ -17,7 +23,7 @@
 
 <body>
   <div class="loadingOverlay" id="loadingOverlay">
-    <img src="/img/wikabedia.png" class="icon">
+    <img src="/img/wikabedia.png" class="icon img-invert">
     <div class="progressBarContainer">
       <div class="progressBar"></div>
     </div>
@@ -25,18 +31,18 @@
 
   <div class="topButtons left">
     <a class="button" href="/" title="Return to home page">
-      <img src="/img/back.png">
+      <img src="/img/back.png" class="img-invert">
       <p>back to home</p>
     </a>
   </div>
 
   <div class="topButtons right">
     <div class="button search">
-      <img src="/img/search.png">
+      <img src="/img/search.png" class="img-invert">
       <input type="text" placeholder="saerch for somting" id="searchBox">
     </div>
     <a class="button create" href="/creator.html">
-      <img src="/img/create.png" title="Go to article creator page">
+      <img src="/img/create.png" title="Go to article creator page" class="img-invert">
       <p>create article</p>
     </a>
   </div>
@@ -62,7 +68,7 @@
     </ul>
   </footer>
 
-  <script src="js/articlesDir.js?v=2"></script>
+  <script src="js/articles.js?v=3"></script>
   <script src="js/main.js?v=2"></script>
   <script src="js/all.js"></script>
   <script src="js/theme.js?v=2"></script>
