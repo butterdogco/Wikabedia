@@ -177,7 +177,7 @@ function formatData(dat) {
     let imageURL = "img/wikabedia%20icon.png";
 
     if (response) {
-      let image = response[5] || imageURL;
+      let image = response[4] || imageURL;
       if (image.includes("https://")) {
         // is a web url
         if (image.includes("drive.google.com")) {
