@@ -182,7 +182,7 @@ function formatData(dat) {
         // is a web url
         if (image.includes("drive.google.com")) {
           // is google drive
-          const imageId = response[5].toString().replace('https://drive.google.com/open?id=', '');
+          const imageId = image.replace('https://drive.google.com/open?id=', '');
           const newImageUrl = `https://drive.google.com/thumbnail?id=${imageId}`;
           image = newImageUrl;
         } else {
