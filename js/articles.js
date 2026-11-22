@@ -200,14 +200,14 @@ function formatData(dat) {
       }
 
       const item = {
-        title: response[3], // Column D
-        desc: response[4], // Column E
-        author: response[2], // Column C
+        title: response[2], // Column D
+        desc: response[3], // Column E
+        author: response[1], // Column C
         image: image, // Column F
         link: `/Articles/article.html?article=${responseNumber}`,
         place: "items",
-        approved: response[8],
-        removalReason: response[9],
+        approved: response[7],
+        removalReason: response[8],
         date: response[0]
       };
 
@@ -223,7 +223,7 @@ function formatData(dat) {
 getData();
 
 // A = date made
-// B = email
+// B = email (EXCLUDED)
 // C = name
 // D = title
 // E = desc

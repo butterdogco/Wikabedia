@@ -44,7 +44,7 @@ const dataColumnConfig = {
 // Used for column indexes
 const columns = [
   "A", // date
-  "B", // email
+  // "B", // email
   "C", // name
   "D", // title
   "E", // desc
