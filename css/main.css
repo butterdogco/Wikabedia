@@ -45,7 +45,7 @@
 
   --hometopgradient: light-dark(var(--hometopgradientlight), var(--hometopgradientdark));
 
-  --text1: light-dark(var(--textlight1, var(--textdark1)));
+  --text1: light-dark(var(--textlight1), var(--textdark1));
   --text2: light-dark(var(--textlight2), var(--textdark2));
 
   /* Constants (don't change with theme) */
