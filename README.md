@@ -2,7 +2,7 @@
 
 hi
 
-Wikabedia is an open-source and free online enyclopedia. Anyone can post articles onto Wikabedia.
+Wikabedia is an open-source and free online encyclopedia. Anyone can post articles onto Wikabedia.
 
 ## How it works
 
